@@ -32,4 +32,3 @@ server
 PipFile
 Pipfile.lock
 pytest.ini
->>>>>>> parent of 907ce65 (feat: server version)
