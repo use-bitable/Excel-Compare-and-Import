@@ -23,3 +23,13 @@ stats.html
 
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
+=======
+
+# don't upload backend version
+server
+*.py
+PipFile
+Pipfile.lock
+pytest.ini
+>>>>>>> parent of 907ce65 (feat: server version)
