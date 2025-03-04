@@ -30,3 +30,5 @@ server
 PipFile
 Pipfile.lock
 pytest.ini
+logs
+file_cache
