@@ -1,4 +1,0 @@
-from Crypto.Cipher import AES
-
-ENCRYPT_MODE = AES.MODE_ECB
-DEFAULT_KEY_NAME = "SECURITY_KEY"

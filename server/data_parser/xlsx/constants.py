@@ -1,1 +1,0 @@
-SUPPORTED_TYPES = ('.xlsx', '.xlsm', '.xltx', '.xltm')
