@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+baseopensdk = {file = "https://lf3-static.bytednsdoc.com/obj/eden-cn/lmeh7phbozvhoz/base-open-sdk/baseopensdk-0.0.13-py3-none-any.whl"}
+flask = "*"
+flask-restx = "*"
+openpyxl = "*"
+requests = "*"
+pillow = "*"
+arrow = "*"
+pycryptodome = "*"
+loguru = "*"
+
+[dev-packages]
+pytest = "*"
+pylint = "*"
+python-dotenv = "*"
+pytest-env = "*"
+coverage = "*"
+
+[requires]
+python_version = "3.12"
