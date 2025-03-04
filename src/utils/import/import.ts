@@ -1564,7 +1564,6 @@ export async function importExcel(
             t.asyncField as fieldMap,
             t.value as string,
           )
-          console.log(cell, t.target)
           if (!cell || !t.target) continue
           if (t.target.action === TaskAction.Add) t.target.data.push(cell)
           else if (t.target.action === TaskAction.Update) {

@@ -64,9 +64,6 @@ export interface fieldMap {
       headers: Array<[string, string]>
       body: string
     }
-    locationConfig?: {
-      type: "geo" | "regeo" | "auto"
-    }
   }
   linkConfig?: {
     allowAdd?: boolean

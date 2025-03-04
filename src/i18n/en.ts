@@ -50,7 +50,6 @@ export const en = {
       requestConfig: "Request Config",
       requestMethod: "Method",
       requestHeaders: "Headers",
-      locationType: "Location Type",
     },
   },
   table: {
@@ -207,5 +206,10 @@ export const en = {
     geo: "Address Text",
     regeo: "Latitude and Longitude",
     auto: "Auto",
+  },
+  reward: {
+    author: "Author",
+    tip: "Scan the QR code to buy him a coffee",
+    rewardAuthor: "Reward Author",
   },
 }

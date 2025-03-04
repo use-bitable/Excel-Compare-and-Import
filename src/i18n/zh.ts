@@ -50,7 +50,6 @@ export const zh = {
       requestConfig: "请求配置",
       requestMethod: "请求方法",
       requestHeaders: "请求头",
-      locationType: "位置类型",
     },
   },
   table: {
@@ -203,5 +202,10 @@ export const zh = {
     geo: "地址文本",
     regeo: "经纬度",
     auto: "自动",
+  },
+  reward: {
+    author: "作者",
+    tip: "扫码请 Ta 喝杯咖啡",
+    rewardAuthor: "赞赏作者",
   },
 }

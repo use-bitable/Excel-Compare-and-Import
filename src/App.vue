@@ -5,10 +5,10 @@ import Info from "@/components/info/index.vue"
 import runningLogger from "@/components/running-logger/index.vue"
 import bugIcon from "@/components/icons/bug-icon.vue"
 import advancedSetting from "@/components/advanced-setting/index.vue"
-import { ref, onMounted, watch } from "vue"
+import { ref, onMounted, watch, nextTick } from "vue"
 import { bitable, ThemeModeType } from "@lark-base-open/js-sdk"
 import { useI18n } from "vue-i18n"
-import { ElMessage } from "element-plus"
+import { ElMessage, ElScrollbar } from "element-plus"
 import { Link, QuestionFilled, Setting } from "@element-plus/icons-vue"
 import type { ExcelDataInfo } from "@/types/types"
 import { useHead } from "@unhead/vue"
@@ -21,6 +21,7 @@ import GithubIcon from "@/components/icons/github-icon.vue"
 const isDark = useDark()
 const showLogger = ref(false)
 const showAdvancedSetting = ref(false)
+const showReward = ref(false)
 
 useHead({
   meta: [
@@ -97,6 +98,14 @@ watch(
     isActive.value = newVal
   },
 )
+const scrollRef = ref<InstanceType<typeof ElScrollbar>>()
+const onImported = () => {
+  showReward.value = true
+  console.log(scrollRef.value, scrollRef.value?.$el.clientHeight)
+  nextTick(() => {
+    scrollRef.value?.scrollTo(0, parseFloat(scrollRef.value?.$el.clientHeight))
+  })
+}
 
 onMounted(async () => {
   const theme = await bitable.bridge.getTheme()
@@ -111,6 +120,7 @@ onMounted(async () => {
 <template>
   <el-scrollbar
     id="plugin-wrap"
+    ref="scrollRef"
     height="100vh"
   >
     <div
@@ -192,8 +202,20 @@ onMounted(async () => {
         <setting-form
           ref="settingRef"
           :excelData="data"
+          :onImported="onImported"
         />
       </Suspense>
+      <el-row
+        justify="center"
+        style="margin-top: 20px; padding-bottom: 50px"
+        v-show="showReward"
+      >
+        <Reward
+          ref="rewardRef"
+          qrCode="https://s1.imagehub.cc/images/2024/09/27/e0dffe8162034e5614f5665e10e262ff.jpg"
+          :author="Meta.author.name"
+        />
+      </el-row>
     </div>
   </el-scrollbar>
   <el-dialog

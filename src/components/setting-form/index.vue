@@ -34,6 +34,10 @@ const props = defineProps({
     type: Object as () => ExcelDataInfo,
     default: undefined,
   },
+  onImported: {
+    type: Function as () => () => void,
+    default: undefined,
+  },
 })
 const modeSelect = ref(["append"])
 const form = ref()
@@ -282,6 +286,7 @@ async function importAction() {
     userOptions.value,
   )
   importLoading.value = false
+  props.onImported?.()
 }
 
 function autoFill() {

@@ -358,40 +358,6 @@ export function useFieldConfig(
         }),
       ]
     },
-    locationConfig: () => [
-      h(
-        ElFormItem,
-        {
-          label: i18n.global.t("form.label.locationType"),
-        },
-        {
-          default: () =>
-            h(ElSelectV2, {
-              modelValue: configResult.value.locationConfig?.type,
-              ["onUpdate:modelValue"]: (v: "geo" | "regeo" | "auto") => {
-                configResult.value.locationConfig!.type = v
-              },
-              filterable: true,
-              defaultFirstOption: true,
-              options: [
-                {
-                  label: i18n.global.t("locationType.geo"),
-                  value: "geo",
-                },
-                {
-                  label: i18n.global.t("locationType.regeo"),
-                  value: "regeo",
-                },
-                {
-                  label: i18n.global.t("locationType.auto"),
-                  value: "auto",
-                },
-              ],
-              style: "width: 100%",
-            }),
-        },
-      ),
-    ],
   }
 
   const formatExamples: {

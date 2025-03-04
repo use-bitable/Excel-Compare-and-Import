@@ -14,14 +14,14 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: github.repository == 'zjut-bio-party-undergraduate-branch/Excel-Compare-and-Import'
+    if: github.repository == 'use-bitable/Excel-Compare-and-Import'
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
       - run: npm install --frozen-lockfile
       - name: Build Test
