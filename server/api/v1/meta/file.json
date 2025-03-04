@@ -1,0 +1,37 @@
+{
+  "namespace": "file",
+  "version": "v1",
+  "description": "File API",
+  "resource": {
+    "upload": {
+      "method": "post",
+      "path": "/upload",
+      "description": "Upload File",
+      "need_auth": true
+    },
+    "upload_chunk": {
+      "method": "post",
+      "path": "/upload/chunk",
+      "description": "Upload File Chunk",
+      "need_auth": true
+    },
+    "start_chunk": {
+      "method": "post",
+      "path": "/upload/chunk/start",
+      "description": "Start Upload File Chunk",
+      "need_auth": true
+    },
+    "assemble_chunk": {
+      "method": "post",
+      "path": "/upload/chunk/assemble",
+      "description": "Start Upload File Chunk",
+      "need_auth": true
+    },
+    "delete": {
+      "method": "post",
+      "path": "/delete",
+      "description": "Delete File",
+      "need_auth": true
+    }
+  }
+}
