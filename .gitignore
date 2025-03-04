@@ -23,8 +23,6 @@ stats.html
 
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
-=======
 
 # don't upload backend version
 server
@@ -32,3 +30,4 @@ server
 PipFile
 Pipfile.lock
 pytest.ini
+
