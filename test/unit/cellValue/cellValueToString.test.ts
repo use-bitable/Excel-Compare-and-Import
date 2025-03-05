@@ -1,4 +1,4 @@
-import { cellValueToString } from "../../../src/utils/cellValue"
+import { cellValueToString } from "../../../app/utils/cellValue"
 import { describe, it, expect } from "vitest"
 
 describe("cellValueToString test", () => {

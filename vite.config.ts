@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-import { Meta } from "./plugins/meta"
+import { Meta } from "./plugins/meta.js"
 import fs from "fs-extra"
 import { visualizer } from "rollup-plugin-visualizer"
 
@@ -102,7 +102,7 @@ export default ({ mode }: { mode: string }) => {
     },
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"),
+        "@": path.resolve(__dirname, "./app"),
         "vue-i18n": "vue-i18n/dist/vue-i18n.esm-bundler.js",
       },
     },
