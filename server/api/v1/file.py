@@ -21,7 +21,7 @@ from server.file import (
    InvalidateFileException,
    FileNumberLimitException,
 )
-from server.request import make_responce, ResponceStatusCode
+from server.request import make_responce, ResponseStatusCode
 from ._constants import API_V1_LIST
 
 FILE_API_NAMESPACE = "file"
@@ -54,7 +54,7 @@ class UploadAPI(Resource):
               file.stream.read()
           )
           return make_responce(
-             code=ResponceStatusCode.SUCCESS,
+             code=ResponseStatusCode.SUCCESS,
              data={
                 "token": token
              },
@@ -66,7 +66,7 @@ class UploadAPI(Resource):
         ) as e:
           msg = str(e)
           return make_responce(
-              code=ResponceStatusCode.FILE_EXCEEDED_LIMIT, 
+              code=ResponseStatusCode.FILE_EXCEEDED_LIMIT, 
               msg=msg
           ), 200
 
@@ -88,7 +88,7 @@ class UploadChunkAPI(Resource):
               self.get("file").stream.read()
           )
           return make_responce(
-             code=ResponceStatusCode.SUCCESS,
+             code=ResponseStatusCode.SUCCESS,
              msg="success"
           ), 200
         except Exception as e:
@@ -117,7 +117,7 @@ class StartChunkUploadAPI(Resource):
               args.get("chunks")
           )
           return make_responce(
-             code=ResponceStatusCode.SUCCESS,
+             code=ResponseStatusCode.SUCCESS,
              data={
                 "token": token
              },
@@ -141,7 +141,7 @@ class AssembleChunkAPI(Resource):
         try:
           token = fileManager.assemble_file_chunks(args.get("token"))
           return make_responce(
-             code=ResponceStatusCode.SUCCESS,
+             code=ResponseStatusCode.SUCCESS,
              data={
                 "token": token
              },
@@ -164,12 +164,12 @@ class DeleteFileAPI(Resource):
         try:
           fileManager.delete_file(args.get("token"))
           return make_responce(
-             code=ResponceStatusCode.SUCCESS,
+             code=ResponseStatusCode.SUCCESS,
               msg="success"
           ), 200
         except Exception as e:
            g.logger.error(f"Error when delete file: {e}")
            return make_responce(
-              code=ResponceStatusCode.INTERNAL_ERROR,
+              code=ResponseStatusCode.INTERNAL_ERROR,
               msg="Internal Error when delete file."
            ), 200

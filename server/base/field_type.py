@@ -1,7 +1,9 @@
 from enum import Enum
 
+
 class FieldType(Enum):
     """Field type enum."""
+
     # Segments for Text, Barcode field
     Segments = 1
     # Number for Number, Progress, Currency, Rating field
@@ -25,9 +27,11 @@ class FieldType(Enum):
     CreatedUser = 1003
     ModifiedUser = 1004
     AutoNumber = 1005
-  
+
+
 class FieldUIType(Enum):
     """Field UI type enum."""
+
     Text = "Text"
     Barcode = "Barcode"
     Number = "Number"

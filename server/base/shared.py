@@ -1,8 +1,9 @@
 """Shared utility functions"""
+
 from typing import Sequence, Callable
 
 
-def retry[**T, R](func: Callable[T,R], max_retries: int = 3) -> Callable[T,R]:
+def retry[**T, R](func: Callable[T, R], max_retries: int = 3) -> Callable[T, R]:
     """Retry a function when it fails.
 
     Args:
@@ -12,6 +13,7 @@ def retry[**T, R](func: Callable[T,R], max_retries: int = 3) -> Callable[T,R]:
     Returns:
         Callable[[T],R]: Wrapper function
     """
+
     def wrapper(*args: T.args, **kwargs: T.kwargs) -> R:
         retries = 0
         while retries < max_retries:
@@ -22,12 +24,13 @@ def retry[**T, R](func: Callable[T,R], max_retries: int = 3) -> Callable[T,R]:
                 retries += 1
                 if retries == max_retries:
                     raise e
+
     return wrapper
 
 
 def paginate[T](
-        query: Callable[[str | None], tuple[str | None, list[T]]],
-        max_retries: int=3) -> list[T]:
+    query: Callable[[str | None], tuple[str | None, list[T]]], max_retries: int = 3
+) -> list[T]:
     """Paginate a query.
 
     Args:
@@ -67,28 +70,33 @@ def list_has_same_el(l1: list, l2: list):
 def singleton[T](cls: T):
     """Singleton decorator"""
     instances = {}
+
     def wrapper(*args, **kwargs):
         if cls not in instances:
             instances[cls] = cls(*args, **kwargs)
         return instances[cls]
+
     return wrapper
 
-def iter_run[**K, R](seq: Sequence[Callable[K, R]], *args: K.args, **kwargs: K.kwargs) -> list[R]:
+
+def iter_run[**K, R](
+    seq: Sequence[Callable[K, R]], *args: K.args, **kwargs: K.kwargs
+) -> list[R]:
     """Iterate and run functions"""
     res: list[R] = []
     for func in seq:
         res.append(func(*args, **kwargs))
     return res
 
+
 def batch[T](iterable: Sequence[T], batch_size: int):
     """Batch iterable"""
     for i in range(0, len(iterable), batch_size):
-        yield iterable[i:i + batch_size]
+        yield iterable[i : i + batch_size]
+
 
 def batch_action[T, R](
-        iterable: Sequence[T],
-        action: Callable[[Sequence[T]], list[R]],
-        batch_size: int
+    iterable: Sequence[T], action: Callable[[Sequence[T]], list[R]], batch_size: int
 ):
     """Batch action"""
     batched = batch(iterable, batch_size)
@@ -96,6 +104,7 @@ def batch_action[T, R](
     for chunk in batched:
         results.extend(action(chunk))
     return results
+
 
 def group_by[T, R](iterable: Sequence[T], key: Callable[[T], R]) -> dict[R, list[T]]:
     """Group by key"""

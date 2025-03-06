@@ -9,8 +9,10 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional, TypedDict, NotRequired
 from baseopensdk import BaseClient
-from baseopensdk.api.base.v1.resource.app_table_field import \
-   ListAppTableFieldRequest, ListAppTableFieldResponse
+from baseopensdk.api.base.v1.resource.app_table_field import (
+    ListAppTableFieldRequest,
+    ListAppTableFieldResponse,
+)
 from baseopensdk.api.base.v1.model.app_table_field_for_list import AppTableFieldForList
 from baseopensdk.api.base.v1.model.app_table_field_property import AppTableFieldProperty
 from requests.exceptions import RequestException
@@ -19,12 +21,14 @@ from .const import AUTO_FIELD_TYPES
 from .field_config import FieldConfig, LinkConfig
 from .field_type import FieldType, FieldUIType
 
+
 def get_base_fields(
-        table_id: str,
-        base_client: BaseClient,
-        text_field_as_array: bool = False,
-        view_id: Optional[str] = None,
-        page_size: int = 100,):
+    table_id: str,
+    base_client: BaseClient,
+    text_field_as_array: bool = False,
+    view_id: Optional[str] = None,
+    page_size: int = 100,
+):
     """Get table fields.
 
     Args:
@@ -35,49 +39,58 @@ def get_base_fields(
         view_id (str | None, optional): View ID. Defaults to None.
         page_size (int, optional): Page size. Defaults to 100.
     """
+
     def get_fields(page_token: Optional[str] = None):
-        req = ListAppTableFieldRequest.builder()\
-            .table_id(table_id)\
-            .page_size(page_size)\
+        req = (
+            ListAppTableFieldRequest.builder()
+            .table_id(table_id)
+            .page_size(page_size)
             .text_field_as_array(text_field_as_array)
+        )
         if page_token:
             req.page_token(page_token)
         if view_id:
             req.view_id(view_id)
-        res: ListAppTableFieldResponse = base_client.base.v1.app_table_field.list(req.build())
+        res: ListAppTableFieldResponse = base_client.base.v1.app_table_field.list(
+            req.build()
+        )
         if res.code != 0:
             raise RequestException(f"Failed to get fields: {res.msg}")
         data = res.data
         items = data.items or []
         return (data.page_token, items)
+
     return paginate(get_fields)
 
 
 class FieldMap(TypedDict):
     """Field map model."""
+
     id: str
     source_field: Optional[str]
     config: NotRequired[Optional[FieldConfig]]
     link_config: NotRequired[Optional[LinkConfig]]
 
+
 class IField(object):
     """Field interface."""
+
     name: str
     id: str
     type: FieldType
     ui_type: FieldUIType
     is_primary: bool
     property: AppTableFieldProperty
-    config: Optional[FieldConfig]=None
-    link_config: Optional[LinkConfig]=None
-    source_field: Optional[str]=None
-    linked_table_id: Optional[str]=None
-    auto: bool=False
+    config: Optional[FieldConfig] = None
+    link_config: Optional[LinkConfig] = None
+    source_field: Optional[str] = None
+    linked_table_id: Optional[str] = None
+    auto: bool = False
 
     def __init__(
-            self,
-            base_field: AppTableFieldForList,
-            field_map: Optional[FieldMap]=None,
+        self,
+        base_field: AppTableFieldForList,
+        field_map: Optional[FieldMap] = None,
     ) -> None:
         self.name = base_field.field_name
         self.id = base_field.field_id

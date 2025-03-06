@@ -2,7 +2,7 @@ from typing import TypedDict, Optional, Any
 from enum import IntEnum
 
 
-class ResponceStatusCode(IntEnum):
+class ResponseStatusCode(IntEnum):
     SUCCESS = 0
     INVALIDATE_PARAMS = 1
     INTERNAL_ERROR = 2
@@ -20,7 +20,7 @@ class ResponceStatusCode(IntEnum):
 class Responce(TypedDict):
   """Reponce class"""
   # success if code == 0, else failure
-  code: ResponceStatusCode
+  code: ResponseStatusCode
   data: Optional[dict[str, Any]]
   msg: Optional[str]
 

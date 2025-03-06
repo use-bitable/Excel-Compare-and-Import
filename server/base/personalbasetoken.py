@@ -4,7 +4,6 @@ from .const import BASE_PRODUCT
 from .exception import VerifyPersonalBaseTokenException
 
 
-
 def verify_personalbasetoken(
     token: str,
     base_id: str,
@@ -16,4 +15,3 @@ def verify_personalbasetoken(
     if response.success():
         return True
     raise VerifyPersonalBaseTokenException(response.msg)
-    

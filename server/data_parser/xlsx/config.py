@@ -1,7 +1,9 @@
 from typing import TypedDict, Optional, Required
 
+
 class ReadXLSXConfig(TypedDict):
     """XLSX data parser config."""
+
     sheet_name: Required[str]
     """Sheet name"""
 

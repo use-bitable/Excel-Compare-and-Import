@@ -1,10 +1,11 @@
 from io import FileIO
+from server.file import FileItem
 from .read_xlsx import preview_xlsx
 from .constants import SUPPORTED_TYPES
 from .config import ReadXLSXConfig
 from ..core import DataParsePlugin
 
-class XLSXParser(DataParsePlugin[FileIO, ReadXLSXConfig]):
+class XLSXParser(DataParsePlugin[FileItem, ReadXLSXConfig]):
     type = SUPPORTED_TYPES
     name = "XLSX Parser"
 
