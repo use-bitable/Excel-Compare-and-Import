@@ -60,4 +60,4 @@ def test_file():
           fileManager.save_file_chunk(token, i, chunk_data)
     file = fileManager.assemble_file_chunks(token)
     fileManager.delete_file(token)
-    shutil.rmtree(FILE_CACHE_DIR)
+    # shutil.rmtree(FILE_CACHE_DIR)

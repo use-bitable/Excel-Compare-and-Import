@@ -1,4 +1,3 @@
-from io import FileIO
 from server.file import FileItem
 from .read_xlsx import preview_xlsx
 from .constants import SUPPORTED_TYPES

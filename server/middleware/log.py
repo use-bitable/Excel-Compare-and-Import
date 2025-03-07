@@ -13,10 +13,6 @@ def LogMiddleWare(app: Flask):
     def log_init():
         """Log the request information."""
         if request.path in API_PATH_LIST:
-          task_id = request.headers.get(TASK_ID_KEY, None)  
-          if not task_id:
-              task_id = uuid4().hex
-          g.task_id = task_id
           global logger
           needs_authentication: bool = g.get("needs_authentication", True)
           is_authenticated: bool = g.get("is_authenticated", False)
@@ -26,7 +22,7 @@ def LogMiddleWare(app: Flask):
                   request_path=request.path,
                   request_method=request.method,
                   user_id=user_meta.user_id,
-                  tentant_key=user_meta.tenant_key,
+                  tenant_key=user_meta.tenant_key,
                   base_id=user_meta.base_id,
                   product=user_meta.product
               )
@@ -34,8 +30,7 @@ def LogMiddleWare(app: Flask):
                   get_log_file_path(
                       user_meta.tenant_key,
                       user_meta.base_id,
-                      user_meta.user_id,
-                      task_id
+                      user_meta.user_id
                   ),
                   **DEFAULT_LOG_CONFIG,
               )

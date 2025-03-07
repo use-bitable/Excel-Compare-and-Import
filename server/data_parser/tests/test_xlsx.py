@@ -1,5 +1,6 @@
 import os
-from server.file import fileManager, FileItem
+from json import dumps
+from server.file import fileManager, FileItem, create_file
 from server.data_parser.xlsx import preview_xlsx, ReadXLSXConfig
 from server.data_parser.types import PaginationData
 from server.data_parser.tests.utils import TestCase
@@ -11,6 +12,7 @@ DEFAULT_SHEET_NAME = "Sheet1"
 
 TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
     {
+        "description": "Test preview xlsx with default config",
         "config": {
             "page_size": 200,
             "page_token": None,
@@ -26,6 +28,7 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
         ],
     },
     {
+        "description": "Test preview xlsx with page token 1",
         "config": {
             "page_size": 200,
             "page_token": 1,
@@ -41,6 +44,7 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
         ],
     },
     {
+        "description": "Test preview xlsx with header 2",
         "config": {
             "page_size": 200,
             "page_token": None,
@@ -55,6 +59,40 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
             (lambda data: data["data"][0][0] == 1, "The first row is wrong."),
         ],
     },
+    {
+        "description": "Test preview xlsx with efficiently data",
+        "config": {
+            "page_size": 200,
+            "page_token": None,
+            "config": {
+                "sheet_name": "Sheet2",
+            },
+        },
+        "judge": [
+            (
+                lambda data: data["data"][0][0] == "id",
+                "The first row is wrong.",
+            ),
+        ],
+    },
+    {
+        "description": "Test preview xlsx with merged",
+        "config": {
+            "page_size": 200,
+            "page_token": None,
+            "config": {
+                "sheet_name": "Sheet3",
+            },
+        },
+        "judge": [
+            (
+                lambda data: not create_file(
+                    os.path.join(TEST_DIR, "preview.json"), dumps(data, indent=4), "w"
+                ),
+                "The first row is wrong.",
+            ),
+        ],
+    },
 ]
 
 
@@ -63,7 +101,7 @@ def run_test_case(
 ):
     data = preview_xlsx(file, test_case["config"])
     for func, msg in test_case["judge"]:
-        assert func(data), msg
+        assert func(data), "".join([test_case["description"], ": ", msg])
 
 
 def test_preview():

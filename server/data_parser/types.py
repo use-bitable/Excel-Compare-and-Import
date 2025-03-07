@@ -23,6 +23,13 @@ class PaginationData[D](PreviewConfig):
     data: D
     """Page Data"""
 
+class UrlValue(TypedDict):
+    """URL value"""
+    url: str
+    """URL"""
+    text: str
+    """Text"""
+
 
 type CanPaginationData[D] = PaginationData[D] | D
-type BasicValueType = str | int | float | bool | None
+type BasicValueType = str | int | float | bool | None | UrlValue
