@@ -38,23 +38,35 @@ def create_file(
         raise CreateFileException(f"Create file {filename} error: {e}")
 
 
-def get_file_md5(filename: str):
+def get_file_md5(filename: str | IO):
     """Caculate File MD5
 
     Args:
-        filename (str): file path
+        filename (str | IO): file path
 
     Returns:
         str: MD5
     """
     try:
         h = hashlib.md5()
-        with open(filename, "rb") as f:
-            while chunk := f.read(128 * h.block_size):
-                h.update(chunk)
+        need_close = False
+        if isinstance(filename, str):
+            f = open(filename, "rb")
+            need_close = True
+        else:
+            f = filename
+        while chunk := f.read(128 * h.block_size):
+            h.update(chunk)
+        if need_close:
+            f.close()
         return h.digest().hex()
     except Exception as e:
         raise CaculateMD5Exception(f"Caculate {filename} MD5 error: {e}")
+
+def get_md5_from_bytes(data: bytes):
+    h = hashlib.md5()
+    h.update(data)
+    return h.hexdigest()
 
 
 def read_file(file: str, mode: str = "rb+"):

@@ -20,3 +20,9 @@ class ReadXLSXConfig(TypedDict):
 
     Default: 1
     """
+
+    performance_mode: Optional[bool]
+    """Performance mode
+
+    Default: False
+    """

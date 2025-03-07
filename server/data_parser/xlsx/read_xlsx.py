@@ -1,25 +1,30 @@
 """Excel parse plugin"""
 
+import os
 from io import FileIO
 from datetime import datetime
+from PIL import Image
 from openpyxl import load_workbook, Workbook
-from openpyxl.cell import Cell
-from server.file import FileItem
+from openpyxl.utils import get_column_letter
+from openpyxl.cell import Cell, ReadOnlyCell
+from openpyxl.worksheet.worksheet import Worksheet
+from server.file import FileItem, get_md5_from_bytes
 from .config import ReadXLSXConfig
 from ..core import DataParser
-from ..types import PreviewConfig, CanPaginationData, BasicValueType
+from ..types import PreviewConfig, CanPaginationData, BasicValueType, FileValue
 from ..exceptions import InvalidConfigValue
 from ..utils import preview_cache
 
 
-def parse_cell(cell: Cell) -> BasicValueType:
+def parse_cell(cell: Cell | ReadOnlyCell) -> BasicValueType:
     """Parse the cell value"""
-    link = cell.hyperlink
-    if not link is None:
-        return {
-            "url": str(link.target),
-            "text": str(link.display),
-        }
+    if not isinstance(cell, ReadOnlyCell):
+        link = cell.hyperlink
+        if not link is None:
+            return {
+                "url": str(link.target),
+                "text": str(link.display),
+            }
     value = cell.value
     if value is None or isinstance(value, (str, int, float, bool)):
         return value
@@ -39,7 +44,10 @@ def validate_read_config(config: ReadXLSXConfig):
     header_index = config.get("header", None)
     if header_index is None:
         header_index = 1
-    return (sheet_name, data_range, header_index)
+    performance_mode = config.get("performance_mode", False)
+    if performance_mode is None:
+        performance_mode = False
+    return (sheet_name, data_range, header_index, performance_mode)
 
 
 def close_wb_file(wb: Workbook, f: FileIO):
@@ -145,6 +153,34 @@ def parse_data(data: FileItem, config: ReadXLSXConfig, context: DataParser):
     wb, close = get_workbook(data)
 
 
+def load_images(ws: Worksheet, f: FileItem):
+    _images = ws._images
+    image_path = os.path.join(f.dir_path, "attachments")
+    images: dict[str, list[FileValue]] = {}
+    if not os.path.exists(image_path) and len(_images) > 0:
+        os.makedirs(image_path)
+    for i in _images:
+        anchor = f"{get_column_letter(i.anchor._from.col + 1)}{i.anchor._from.row + 1}"
+        image = Image.open(i.ref).convert("RGB")
+        md5 = get_md5_from_bytes(image.tobytes())
+        name = f"{md5}.{i.format}"
+        file_path = os.path.join(image_path, name)
+        if not os.path.exists(file_path):
+            image.save(file_path)
+        if not anchor in images:
+            images[anchor] = []
+        images[anchor].append(
+            {
+                "name": name,
+                "type": "file",
+                "size": os.path.getsize(file_path),
+                "md5": md5,
+                "token": None,
+            }
+        )
+    return images
+
+
 def get_preview_cache_key(config: PreviewConfig[ReadXLSXConfig]):
     _config = config["config"]
     return f"SN{_config["sheet_name"]}DR{_config.get("data_range", None)}H{_config.get("header", 1)}S{config["page_size"]}T{config.get("page_token", 0)}"
@@ -166,14 +202,18 @@ def preview_xlsx(data: FileItem, config: PreviewConfig[ReadXLSXConfig]):
     _config = config["config"]
     if _config is None:
         raise InvalidConfigValue("`config` is required")
-    sheet_name, data_range, header_index = validate_read_config(_config)
+    sheet_name, data_range, header_index, performance_mode = validate_read_config(
+        _config
+    )
 
-    wb, close = get_workbook(data)
+    wb, close = get_workbook(data, read_only=performance_mode)
     ws = wb[sheet_name]
     _min_row = ws.min_row
     _max_row = ws.max_row
     _min_col = ws.min_column
     _max_col = ws.max_column
+    if not performance_mode:
+        images = load_images(ws, data)
 
     if data_range:
         ws = ws[data_range]
@@ -184,7 +224,20 @@ def preview_xlsx(data: FileItem, config: PreviewConfig[ReadXLSXConfig]):
         if header_index > max_row:
             raise InvalidConfigValue(f"Header index {header_index} is out of range.")
         ws = ws[min_row : max_row + 1]
-        _data = [[parse_cell(cell) for cell in row] for row in ws]
+        if performance_mode or len(images) == 0:
+            _data = [[parse_cell(cell) for cell in row] for row in ws]
+        else:
+            _data = [
+                [
+                    (
+                        images[f"{get_column_letter(cell.column)}{cell.row}"]
+                        if f"{get_column_letter(cell.column)}{cell.row}" in images
+                        else parse_cell(cell)
+                    )
+                    for cell in row
+                ]
+                for row in ws
+            ]
     else:
         min_row = max(header_index + page_token * page_size, _min_row)
         if min_row > _max_row:
@@ -192,15 +245,33 @@ def preview_xlsx(data: FileItem, config: PreviewConfig[ReadXLSXConfig]):
         max_row = min(min_row + page_size - 1, _max_row)
         if header_index > max_row:
             raise InvalidConfigValue(f"Header index {header_index} is out of range.")
-        _data = [
-            [parse_cell(cell) for cell in row]
-            for row in ws.iter_rows(
-                min_row=min_row,
-                max_row=max_row,
-                min_col=_min_col,
-                max_col=_max_col,
-            )
-        ]
+        if performance_mode or len(images) == 0:
+            _data = [
+                [parse_cell(cell) for cell in row]
+                for row in ws.iter_rows(
+                    min_row=min_row,
+                    max_row=max_row,
+                    min_col=_min_col,
+                    max_col=_max_col,
+                )
+            ]
+        else:
+            _data = [
+                [
+                    (
+                        images[f"{get_column_letter(cell.column)}{cell.row}"]
+                        if f"{get_column_letter(cell.column)}{cell.row}" in images
+                        else parse_cell(cell)
+                    )
+                    for cell in row
+                ]
+                for row in ws.iter_rows(
+                    min_row=min_row,
+                    max_row=max_row,
+                    min_col=_min_col,
+                    max_col=_max_col,
+                )
+            ]
     close()
     res: CanPaginationData[list[list]] = {
         "data": _data,

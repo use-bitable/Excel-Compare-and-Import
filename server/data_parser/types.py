@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional
+from typing import TypedDict, Optional, Literal
 
 
 class PaginationConfig(TypedDict):
@@ -29,7 +29,20 @@ class UrlValue(TypedDict):
     """URL"""
     text: str
     """Text"""
+    type: Literal["url"]
+
+class FileValue(TypedDict):
+    """File value"""
+    name: str
+    """File name"""
+    type: Literal["file"]
+    size: int
+    """File size"""
+    md5: str
+    """MD5 hash"""
+    token: Optional[str]
+    """Token"""
 
 
 type CanPaginationData[D] = PaginationData[D] | D
-type BasicValueType = str | int | float | bool | None | UrlValue
+type BasicValueType = str | int | float | bool | None | UrlValue | list[FileValue]

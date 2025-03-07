@@ -76,12 +76,12 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
         ],
     },
     {
-        "description": "Test preview xlsx with merged",
+        "description": "Test preview xlsx with images",
         "config": {
             "page_size": 200,
             "page_token": None,
             "config": {
-                "sheet_name": "Sheet3",
+                "sheet_name": "Sheet4",
             },
         },
         "judge": [
