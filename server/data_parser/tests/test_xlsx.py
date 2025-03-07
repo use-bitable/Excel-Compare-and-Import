@@ -1,7 +1,7 @@
 import os
 from json import dumps
 from server.file import fileManager, FileItem, create_file
-from server.data_parser.xlsx import preview_xlsx, ReadXLSXConfig
+from server.data_parser.xlsx import paginate_load_xlsx, ReadXLSXConfig
 from server.data_parser.types import PaginationData
 from server.data_parser.tests.utils import TestCase
 
@@ -99,7 +99,7 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
 def run_test_case(
     file: FileItem, test_case: TestCase[ReadXLSXConfig, PaginationData[list[list]]]
 ):
-    data = preview_xlsx(file, test_case["config"])
+    data = paginate_load_xlsx(file, test_case["config"])
     for func, msg in test_case["judge"]:
         assert func(data), "".join([test_case["description"], ": ", msg])
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import List, Dict, IO, Set
 from server.file import FileItem
-from .types import CanPaginationData, PreviewConfig, BasicValueType
+from .types import CanPaginationData, BasicValueType, PaginationConfig
 
 class DataParsePlugin[D: (IO, FileItem), C: dict]:
     """Data parse plugin"""
@@ -22,7 +22,7 @@ class DataParsePlugin[D: (IO, FileItem), C: dict]:
     def can_parse(self, data: D, config: C) -> bool:...
     
     @abstractmethod
-    def preview(self, data: D, config: PreviewConfig[C]) -> CanPaginationData[list[list]]:
+    def preview(self, data: D, config: PaginationConfig[C]) -> CanPaginationData[list[list]]:
       """Preview data source"""
       pass
 

@@ -1,38 +1,41 @@
 from typing import TypedDict, Optional, Literal
 
 
-class PaginationConfig(TypedDict):
+class PaginationConfig[C: dict](TypedDict):
     """Pagination config"""
 
     page_token: Optional[int]
     """Page number, start from 0."""
     page_size: int
     """Per page number"""
-
-
-class PreviewConfig[C: dict](PaginationConfig):
-    """Preview config"""
-
     config: C
     """Config"""
 
 
-class PaginationData[D](PreviewConfig):
+class PaginationData[D](TypedDict):
     """Pagination data"""
 
     data: D
     """Page Data"""
+    page_token: Optional[int]
+    """Page number, start from 0."""
+    page_size: int
+    """Per page number"""
+
 
 class UrlValue(TypedDict):
     """URL value"""
+
     url: str
     """URL"""
     text: str
     """Text"""
     type: Literal["url"]
 
+
 class FileValue(TypedDict):
     """File value"""
+
     name: str
     """File name"""
     type: Literal["file"]

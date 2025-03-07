@@ -11,7 +11,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 from server.file import FileItem, get_md5_from_bytes
 from .config import ReadXLSXConfig
 from ..core import DataParser
-from ..types import PreviewConfig, CanPaginationData, BasicValueType, FileValue
+from ..types import PaginationConfig, CanPaginationData, BasicValueType, FileValue
 from ..exceptions import InvalidConfigValue
 from ..utils import preview_cache
 
@@ -24,6 +24,7 @@ def parse_cell(cell: Cell | ReadOnlyCell) -> BasicValueType:
             return {
                 "url": str(link.target),
                 "text": str(link.display),
+                "type": "url",
             }
     value = cell.value
     if value is None or isinstance(value, (str, int, float, bool)):
@@ -181,13 +182,13 @@ def load_images(ws: Worksheet, f: FileItem):
     return images
 
 
-def get_preview_cache_key(config: PreviewConfig[ReadXLSXConfig]):
+def get_preview_cache_key(config: PaginationConfig[ReadXLSXConfig]):
     _config = config["config"]
     return f"SN{_config["sheet_name"]}DR{_config.get("data_range", None)}H{_config.get("header", 1)}S{config["page_size"]}T{config.get("page_token", 0)}"
 
 
 @preview_cache(get_cache_key=get_preview_cache_key)
-def preview_xlsx(data: FileItem, config: PreviewConfig[ReadXLSXConfig]):
+def paginate_load_xlsx(data: FileItem, config: PaginationConfig[ReadXLSXConfig]):
     """Preview excel file"""
     page_size = config.get("page_size", None)
     if page_size is None:
