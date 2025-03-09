@@ -3,6 +3,7 @@ from .read_xlsx import paginate_load_xlsx
 from .constants import SUPPORTED_TYPES
 from .config import ReadXLSXConfig
 from ..core import DataParsePlugin
+from ..types import BasicValueType
 
 class XLSXParser(DataParsePlugin[FileItem, ReadXLSXConfig]):
     type = SUPPORTED_TYPES

@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, Literal
+from typing import TypedDict, Optional, Literal, Required
 
 
 class PaginationConfig[C: dict](TypedDict):
@@ -6,7 +6,7 @@ class PaginationConfig[C: dict](TypedDict):
 
     page_token: Optional[int]
     """Page number, start from 0."""
-    page_size: int
+    page_size: Required[int]
     """Per page number"""
     config: C
     """Config"""
@@ -19,8 +19,10 @@ class PaginationData[D](TypedDict):
     """Page Data"""
     page_token: Optional[int]
     """Page number, start from 0."""
-    page_size: int
+    page_size: Required[int]
     """Per page number"""
+    has_more: Required[bool]
+    """Has more data"""
 
 
 class UrlValue(TypedDict):

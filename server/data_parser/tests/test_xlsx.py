@@ -76,6 +76,22 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
         ],
     },
     {
+        "description": "Test preview xlsx with urls",
+        "config": {
+            "page_size": 200,
+            "page_token": None,
+            "config": {
+                "sheet_name": "Sheet3",
+            },
+        },
+        "judge": [
+            (
+                lambda data: isinstance(data["data"][1][8], dict) and data["data"][1][8]["type"] == "url",
+                "The I2 cell is not a url.",
+            )
+        ],
+    },
+    {
         "description": "Test preview xlsx with images",
         "config": {
             "page_size": 200,
@@ -86,10 +102,8 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[list[list]]]] = [
         },
         "judge": [
             (
-                lambda data: not create_file(
-                    os.path.join(TEST_DIR, "preview.json"), dumps(data, indent=4), "w"
-                ),
-                "The first row is wrong.",
+                lambda data: isinstance(data["data"][0][4], list) and data["data"][0][4][0]["type"] == "file",
+                "The E1 cell is not a file list.",
             ),
         ],
     },

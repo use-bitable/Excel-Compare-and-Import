@@ -4,27 +4,32 @@ from typing import List, Dict, IO, Set
 from server.file import FileItem
 from .types import CanPaginationData, BasicValueType, PaginationConfig
 
+
 class DataParsePlugin[D: (IO, FileItem), C: dict]:
     """Data parse plugin"""
 
     @property
     @abstractmethod
-    def type(self) -> Set[str]:...
+    def type(self) -> Set[str]: ...
 
     @property
     @abstractmethod
-    def name(self) -> str:...
-    
+    def name(self) -> str: ...
+
     @abstractmethod
-    def parse(self, data: D, config: C, context: DataParser) -> list[dict[str, BasicValueType]]:...
-    
+    def parse(
+        self, data: D, config: C, context: DataParser
+    ) -> list[dict[str, BasicValueType]]: ...
+
     @abstractmethod
-    def can_parse(self, data: D, config: C) -> bool:...
-    
+    def can_parse(self, data: D, config: C) -> bool: ...
+
     @abstractmethod
-    def preview(self, data: D, config: PaginationConfig[C]) -> CanPaginationData[list[list]]:
-      """Preview data source"""
-      pass
+    def preview(
+        self, data: D, config: PaginationConfig[C]
+    ) -> CanPaginationData[list[list[BasicValueType]]]:
+        """Preview data source"""
+        pass
 
     @abstractmethod
     def get_info(self, data: D, config: C):
@@ -34,9 +39,7 @@ class DataParsePlugin[D: (IO, FileItem), C: dict]:
 
 class DataParser:
     def __init__(
-            self,
-            plugins: List[DataParsePlugin] = [],
-            config: Dict[str, any] = {}
+        self, plugins: List[DataParsePlugin] = [], config: Dict[str, any] = {}
     ) -> None:
         self.config = config
         self.plugins: Dict[str, DataParsePlugin] = {}
@@ -46,7 +49,7 @@ class DataParser:
     def register_plugin(self, plugin: DataParsePlugin):
         for type in plugin.type:
             self.plugins[type] = plugin
-    
+
     def parse(self, type: str, data: IO | str, config: any):
         if type not in self.plugins:
             raise ValueError(f"Can't find parser for {type}")

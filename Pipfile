@@ -13,6 +13,9 @@ pillow = "*"
 arrow = "*"
 pycryptodome = "*"
 loguru = "*"
+xlrd = "*"
+flask-sse = "*"
+gunicorn = "*"
 
 [dev-packages]
 pytest = "*"
