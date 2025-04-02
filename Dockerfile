@@ -9,7 +9,7 @@ RUN npm install \
   && npm run build --frozen-lockfile
 
 # Build the backend
-FROM python:3.12
+FROM python:3.13
 
 LABEL version="4.0.0"
 
