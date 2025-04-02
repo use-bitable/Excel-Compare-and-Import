@@ -23,11 +23,3 @@ stats.html
 
 .DS_Store
 Thumbs.db
-
-# don't upload backend version
-server
-*.py
-PipFile
-Pipfile.lock
-pytest.ini
-
