@@ -14,26 +14,22 @@ class ResponseStatusCode(IntEnum):
     # auth 20xx
     UNAUTHORIZED = 2001
     INVALIDATE_TOKEN = 2002
-    NOPERSONALBASETOKEN = 2003
+    NO_PERSONAL_BASE_TOKEN = 2003
 
 
-class Responce(TypedDict):
-  """Reponce class"""
-  # success if code == 0, else failure
-  code: ResponseStatusCode
-  data: Optional[dict[str, Any]]
-  msg: Optional[str]
+class Response(TypedDict):
+    """Response class"""
 
-def make_responce(
-        code: int,
-        data: dict = None,
-        msg: str = None
-):
-    responce: Responce = {
-        "code": code
-    }
+    # success if code == 0, else failure
+    code: ResponseStatusCode
+    data: Optional[dict[str, Any]]
+    msg: Optional[str]
+
+
+def make_response(code: int, data: dict = None, msg: str = None):
+    response: Response = {"code": code}
     if data:
-        responce["data"] = data
+        response["data"] = data
     if msg:
-        responce["msg"] = msg
-    return responce
+        response["msg"] = msg
+    return response

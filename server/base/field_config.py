@@ -31,12 +31,13 @@ class LinkConfig(TypedDict):
 
     primary_key: str
     allow_add: bool
+    view_id: Optional[str]
 
 
 class FieldConfig(TypedDict):
     """Field config type."""
 
-    format: NotRequired[Optional[str]]
+    format: NotRequired[Optional[str | list[str]]]
     separator: NotRequired[Optional[str]]
     boolValue: NotRequired[Optional[BoolValueConfig]]
     requestConfig: NotRequired[Optional[RequestConfig]]

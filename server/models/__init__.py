@@ -3,3 +3,4 @@ from .basic_model import *
 from .append_model import *
 from .file_model import *
 from .authorization_model import *
+from .data_model import *

@@ -1,5 +1,5 @@
 import os
-import json
+import orjson
 from Crypto.Cipher import AES
 from dataclasses import dataclass
 from typing import Callable
@@ -59,7 +59,7 @@ def decrypt_token(value: str, security_key: str) -> str:
 
 @dataclass(frozen=True)
 class TokenMeta:
-    """Token meta nase class"""
+    """Token meta base class"""
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, TokenMeta):
@@ -79,7 +79,9 @@ def encode_token[T](meta: T, security_key: str) -> str:
     """
     if not security_key:
         raise NoSecurityKeyException("Security key is not offered.")
-    return encrypt_token(json.dumps(meta.__dict__, sort_keys=True), security_key)
+    return encrypt_token(
+        orjson.dumps(meta, option=orjson.OPT_SORT_KEYS).decode(), security_key
+    )
 
 
 def decode_token[T](token: str, security_key: str, meta_class: T) -> T:
@@ -95,7 +97,7 @@ def decode_token[T](token: str, security_key: str, meta_class: T) -> T:
     """
     if not security_key:
         raise NoSecurityKeyException("Security key is not offered.")
-    return meta_class(**json.loads(decrypt_token(token, security_key)))
+    return meta_class(**orjson.loads(decrypt_token(token, security_key)))
 
 
 class TokenManager[T]:
@@ -111,7 +113,7 @@ class TokenManager[T]:
             security_key = os.getenv(DEFAULT_KEY_NAME, None)
             if not security_key:
                 raise NoSecurityKeyException("Security key is not offered.")
-        self.security_key = security_key
+        self.__security_key = security_key
         self.encode_method = encode_method
         self.decode_method = decode_method
 
@@ -124,7 +126,7 @@ class TokenManager[T]:
         Returns:
             str: Encrypted token
         """
-        return self.encode_method(meta, self.security_key)
+        return self.encode_method(meta, self.__security_key)
 
     def decode_token(self, token: str) -> T:
         """Decode token
@@ -135,7 +137,7 @@ class TokenManager[T]:
         Returns:
             TokenMeta: Token meta
         """
-        return self.decode_method(token, self.security_key, self.meta_class)
+        return self.decode_method(token, self.__security_key, self.meta_class)
 
 
 def tokenclass(cls: any):

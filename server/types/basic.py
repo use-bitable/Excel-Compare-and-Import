@@ -3,6 +3,6 @@
 
 from typing import Mapping
 
-Number = int | float
-RawValueType = Number | str | bool | None | list[str]
-HeadersMapping = Mapping[str, str | bytes | None]
+type Number = int | float
+type RawValueType = Number | str | bool | None | list[str]
+type HeadersMapping = Mapping[str, str | bytes | None]

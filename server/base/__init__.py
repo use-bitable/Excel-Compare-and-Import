@@ -6,8 +6,9 @@
 # @Description: Base
 
 from .base import *
-from .file import *
 from .field import *
 from .record import *
 from .table import *
-from .personalbasetoken import *
+from .patches import patch
+
+patch()

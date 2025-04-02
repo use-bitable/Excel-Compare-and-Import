@@ -1,18 +1,16 @@
-from typing import IO
-from werkzeug.datastructures import FileStorage
-from server.base import ITable
-from server.data_parser.core import DataParser, DataParsePlugin
+from server.file import FileItem
+from server.data_parser.core import DataParsePlugin
+from .types import ReadXLSConfig
+from .read_xls import *
 from .constants import SUPPORTED_TYPES
 
-class XLSParser(DataParsePlugin):
+
+class XLSParser(DataParsePlugin[FileItem, ReadXLSConfig]):
     type = SUPPORTED_TYPES
     name = "XLS Parser"
 
-    def parse(self, data: FileStorage | IO, config: any, context: DataParser) -> ITable:
-        return super().parse(data, config, context)
-    
-    def can_parse(self, type):
-        return type in self.type
-    
+    def parse(self, data, config, context):
+        return iter_row_xls(data, config)
+
     def preview(self, data, config):
-        return super().preview(data, config)
+        return paginate_load_xls(data, config, parse_data=True)

@@ -1,22 +1,16 @@
 from server.file import FileItem
-from .read_xlsx import paginate_load_xlsx
+from .read_xlsx import *
 from .constants import SUPPORTED_TYPES
-from .config import ReadXLSXConfig
+from .types import ReadXLSXConfig
 from ..core import DataParsePlugin
-from ..types import BasicValueType
+
 
 class XLSXParser(DataParsePlugin[FileItem, ReadXLSXConfig]):
     type = SUPPORTED_TYPES
     name = "XLSX Parser"
 
     def parse(self, data, config, context):
-        return super().parse(data, config, context)
-    
-    def can_parse(self, data, config):
-        return super().can_parse(data, config)
-    
+        return iter_row_xlsx(data, config)
+
     def preview(self, data, config):
-        return paginate_load_xlsx(data, config)
-    
-    def get_info(self, data, config):
-        return super().get_info(data, config)
+        return paginate_load_xlsx(data, config, parse_data=True)

@@ -1,1 +1,1 @@
-SUPPORTED_TYPES = ('.xls', '.csv')
+SUPPORTED_TYPES = {".xls"}

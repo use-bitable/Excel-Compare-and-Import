@@ -1,35 +1,42 @@
 import os
+import asyncio
 import functools
-from json import loads, dumps
 from typing import Callable
-from server.file import FileItem, create_file
-from server.data_parser.types import PaginationConfig
-from .types import CanPaginationData
+
+import orjson
+
+from server.file import async_create_file
+from .types import BasicValueType
 
 
 CACHE_DIR = "preview"
 
 
-def data_cache[C: dict](
+def data_cache[C: dict, F: Callable](
     get_cache_key: Callable[[C], str],
 ):
     """Decorator for cache preview data"""
 
     def decorator(
-        func: Callable[[FileItem, C], CanPaginationData[list[list]]],
+        func: F,
     ):
         @functools.wraps(func)
-        def wrapper(f: FileItem, config: C):
+        def wrapper(*args, **kwargs):
             """Wrapper for cache preview data"""
-            key = get_cache_key(config)
-            cache_path = os.path.join(f.dir_path, "cache", CACHE_DIR, f"{key}.json")
-            if not os.path.exists(cache_path):
-                data = func(f, config)
-                create_file(cache_path, dumps(data), "w")
+            key = get_cache_key(*args, **kwargs)
+            # cache_path = os.path.join(f.dir_path, "cache", cache_dir, f"{key}.json")
+            if not os.path.exists(key):
+                data = func(*args, **kwargs)
+                asyncio.run(async_create_file(key, orjson.dumps(data), "wb"))
                 return data
-            with open(cache_path, "r") as file:
-                return loads(file.read())
+            with open(key, "rb") as file:
+                return orjson.loads(file.read())
 
         return wrapper
 
     return decorator
+
+
+def parse_data_to_dict(data: list[list[BasicValueType]], fields: list[str]):
+    """Parse the data"""
+    return [dict(zip(fields, row)) for row in data]

@@ -1,5 +1,5 @@
 from flask import request, Flask, g
-from server.request import ResponseStatusCode, make_responce
+from server.request import ResponseStatusCode, make_response
 from server.user import get_user_token_manager
 from server.api import (
     API_NEED_AUTH_PATH,
@@ -25,7 +25,7 @@ def AuthenticationMiddleware(app: Flask):
             user_token = request.headers.get(AUTHORIZATION_HEADER_KEY)
             if not user_token:
                 return (
-                    make_responce(
+                    make_response(
                         ResponseStatusCode.UNAUTHORIZED, msg="No user token provided"
                     ),
                     200,
@@ -33,7 +33,7 @@ def AuthenticationMiddleware(app: Flask):
             user_token_security_key = request.headers.get(USER_TOKEN_SECURITY_KEY)
             if not user_token_security_key:
                 return (
-                    make_responce(
+                    make_response(
                         ResponseStatusCode.UNAUTHORIZED,
                         msg="No personal base token provided",
                     ),
@@ -54,7 +54,7 @@ def AuthenticationMiddleware(app: Flask):
                 )
                 logger.error(f"Invalid user token or personalBaseToken: {e}")
                 return (
-                    make_responce(
+                    make_response(
                         ResponseStatusCode.INVALIDATE_TOKEN,
                         msg=f"Invalid user token or personalBaseToken: {e}",
                     ),

@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-FILE_SECRUITY_KEY_NAME = "FILE_SECURITY_KEY"
+FILE_SECURITY_KEY_NAME = "FILE_SECURITY_KEY"
 BASE_DIR = Path().absolute()
 FILE_CACHE_DIR_NAME = os.getenv("FILE_CACHE_DIR_NAME", "file_cache")
 FILE_CACHE_DIR = os.path.join(BASE_DIR, FILE_CACHE_DIR_NAME)

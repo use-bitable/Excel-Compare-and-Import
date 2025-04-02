@@ -3,7 +3,7 @@ import hashlib
 import requests
 import re
 from typing import IO
-from json import loads
+import orjson
 from .exceptions import (
     CreateDirException,
     CreateFileException,
@@ -38,6 +38,20 @@ def create_file(
         raise CreateFileException(f"Create file {filename} error: {e}")
 
 
+async def async_create_file(
+    filename: str, data: IO, mode: str = "wb+", encoding: str | None = None
+):
+    """Create file
+
+    Args:
+        filename (str): file path
+        data (IO): file data
+        mode (str, optional): open file mode. Defaults to "wb+".
+        encoding (str | None, optional): file encoding. Defaults to None.
+    """
+    create_file(filename, data, mode, encoding)
+
+
 def get_file_md5(filename: str | IO):
     """Caculate File MD5
 
@@ -63,6 +77,7 @@ def get_file_md5(filename: str | IO):
     except Exception as e:
         raise CaculateMD5Exception(f"Caculate {filename} MD5 error: {e}")
 
+
 def get_md5_from_bytes(data: bytes):
     h = hashlib.md5()
     h.update(data)
@@ -74,13 +89,13 @@ def read_file(file: str, mode: str = "rb+"):
         return f.read()
 
 
-def read_json_file(file: str, mode: str = "r"):
-    return loads(read_file(file, mode=mode))
+def read_json_file(file: str, mode: str = "rb"):
+    return orjson.loads(read_file(file, mode=mode))
 
 
 def get_file_from_url(url: str):
     #  validate url
-    url_protocol_pattern = r"(http|https)://"
+    url_protocol_pattern = r"^(http|https|ftp)://"
     if not re.match(url_protocol_pattern, url):
         raise InValidUrlException(f"Invalid url: {url}, must start with http/https")
 

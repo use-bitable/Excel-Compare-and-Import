@@ -1,0 +1,13 @@
+{
+  "namespace": "data",
+  "version": "v1",
+  "description": "Data API",
+  "resource": {
+    "preview": {
+      "method": "post",
+      "path": "/preview",
+      "description": "Preview data",
+      "need_auth": true
+    }
+  }
+}

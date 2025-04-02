@@ -7,9 +7,10 @@ import glob
 from typing import IO
 from time import time
 from dataclasses import dataclass
-from json import dumps
+import orjson
 from werkzeug.utils import secure_filename
 from server.token import TokenManager, TokenMeta, tokenclass
+from server.utils import timestamp_s_to_ms
 from .exceptions import (
     NoFileException,
     ChunkNotFoundException,
@@ -154,7 +155,7 @@ class FileManager:
                 f"The size of file ({len(data) / (1024 * 1024)} MB) exceed file size limit ({self.size_limit / (1024 * 1024)} MB). "
             )
         uid = str(uuid.uuid4())
-        created_time = int(round(time() * 1000))
+        created_time = timestamp_s_to_ms(time())
         file_token_meta = FileTokenMeta(
             tenant_key=tenant_key,
             base_id=base_id,
@@ -194,7 +195,7 @@ class FileManager:
                 f"Exceed file size limit ({self.size_limit / (1024 * 1024)} MB). "
             )
         uid = str(uuid.uuid4())
-        created_time = int(round(time() * 1000))
+        created_time = timestamp_s_to_ms(time())
         file_token_meta = FileTokenMeta(
             tenant_key=tenant_key,
             base_id=base_id,
@@ -215,8 +216,7 @@ class FileManager:
         )
         create_file(
             os.path.join(meta_path, ORIGIN_FILE_DIR_NAME, CHUNK_META_FILE_NAME),
-            dumps(chunk_meta.__dict__),
-            mode="w",
+            orjson.dumps(chunk_meta),
         )
         return token
 
@@ -270,8 +270,7 @@ class FileManager:
     def save_file_meta(self, meta_path: str, file_meta: FileMeta):
         create_file(
             os.path.join(meta_path, FILE_META_FILE_NAME),
-            dumps(file_meta.__dict__),
-            mode="w",
+            orjson.dumps(file_meta),
         )
 
     def get_file_meta(self, file_dir: str):
@@ -308,8 +307,9 @@ class FileManager:
         user_id: str,
         base_id: str,
     ):
+        if self.user_limit is None:
+            return True
         file_list = self.get_user_file_list(tenant_key, user_id, base_id)
-
         return len(file_list) < self.user_limit
 
     def get_user_file_list(

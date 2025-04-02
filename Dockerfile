@@ -11,6 +11,8 @@ RUN npm install \
 # Build the backend
 FROM python:3.12
 
+LABEL version="4.0.0"
+
 LABEL org.opencontainers.image.authors="qww"
 
 WORKDIR /app
@@ -23,4 +25,4 @@ RUN pip install pipenv \
 
 EXPOSE 5000
 
-CMD ["pipenv", "run", "gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["pipenv", "run", "gunicorn", "-b", "0.0.0.0:5000", "server:app"]

@@ -1,11 +1,12 @@
 from __future__ import annotations
 from abc import abstractmethod
-from typing import List, Dict, IO, Set
+from typing import List, Dict, IO, Set, Generator
 from server.file import FileItem
-from .types import CanPaginationData, BasicValueType, PaginationConfig
+from .exceptions import NotSupportDataType
+from .types import CanPaginationData, BasicValueType, PaginationConfig, ParsedData
 
 
-class DataParsePlugin[D: (IO, FileItem), C: dict]:
+class DataParsePlugin[D: (IO, FileItem), RC: dict]:
     """Data parse plugin"""
 
     @property
@@ -18,26 +19,18 @@ class DataParsePlugin[D: (IO, FileItem), C: dict]:
 
     @abstractmethod
     def parse(
-        self, data: D, config: C, context: DataParser
-    ) -> list[dict[str, BasicValueType]]: ...
-
-    @abstractmethod
-    def can_parse(self, data: D, config: C) -> bool: ...
+        self, data: D, config: RC, context: DataParser
+    ) -> Generator[list[dict[str, BasicValueType]]]: ...
 
     @abstractmethod
     def preview(
-        self, data: D, config: PaginationConfig[C]
-    ) -> CanPaginationData[list[list[BasicValueType]]]:
+        self, data: D, config: PaginationConfig[RC]
+    ) -> CanPaginationData[ParsedData]:
         """Preview data source"""
         pass
 
-    @abstractmethod
-    def get_info(self, data: D, config: C):
-        """Get data source info (SheetNames, FieldNames etc)."""
-        pass
 
-
-class DataParser:
+class DataParser[D: (IO, FileItem), RC: dict]:
     def __init__(
         self, plugins: List[DataParsePlugin] = [], config: Dict[str, any] = {}
     ) -> None:
@@ -50,7 +43,16 @@ class DataParser:
         for type in plugin.type:
             self.plugins[type] = plugin
 
-    def parse(self, type: str, data: IO | str, config: any):
+    def parse(self, type: str, data: D, config: RC = None):
         if type not in self.plugins:
-            raise ValueError(f"Can't find parser for {type}")
+            raise NotSupportDataType(f"Can't find parser for {type}")
         return self.plugins[type].parse(data, config, self)
+
+    def preview(self, type: str, data: D, config: PaginationConfig[RC] = None):
+        if type not in self.plugins:
+            raise NotSupportDataType(f"Can't find parser for {type}")
+        return self.plugins[type].preview(data, config)
+
+    @property
+    def support_types(self) -> Set[str]:
+        return set(self.plugins.keys())

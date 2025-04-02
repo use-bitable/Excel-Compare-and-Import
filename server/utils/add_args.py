@@ -10,7 +10,7 @@ from flask_restx.reqparse import RequestParser
 
 def add_args(parser: RequestParser, args: dict[str, list | dict[str, any]]):
     """Method to add arguments to the parser"""
-    required = args.get("required", [])
+    required = set(args.get("required", []))
     properties = args.get("properties", {})
     for arg in properties:
         item = properties[arg]
@@ -21,4 +21,5 @@ def add_args(parser: RequestParser, args: dict[str, list | dict[str, any]]):
             type=item["type"],
             help=item.get("description", None),
             default=item.get("default", None),
+            choices=item.get("enum", None),
         )

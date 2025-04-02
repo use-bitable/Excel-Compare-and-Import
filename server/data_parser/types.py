@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, Literal, Required
+from typing import TypedDict, Optional, Literal, Required, Any
 
 
 class PaginationConfig[C: dict](TypedDict):
@@ -6,9 +6,9 @@ class PaginationConfig[C: dict](TypedDict):
 
     page_token: Optional[int]
     """Page number, start from 0."""
-    page_size: Required[int]
+    page_size: Optional[int]
     """Per page number"""
-    config: C
+    config: Optional[C]
     """Config"""
 
 
@@ -47,7 +47,33 @@ class FileValue(TypedDict):
     """MD5 hash"""
     token: Optional[str]
     """Token"""
+    parent_token: str
+    """Parent token"""
 
 
 type CanPaginationData[D] = PaginationData[D] | D
 type BasicValueType = str | int | float | bool | None | UrlValue | list[FileValue]
+
+
+class DataMeta(TypedDict):
+    """Data meta"""
+
+    fields: list[str]
+    """Fields"""
+    total: int
+    """Total count"""
+    can_parse: bool
+    """Can parse"""
+    errors: list[str]
+    """Errors"""
+    extra: dict[str, Any]
+    """Extra"""
+
+
+class ParsedData(TypedDict):
+    """Parsed data"""
+
+    data: list[dict[str, BasicValueType]]
+    """Parsed data"""
+    meta: DataMeta
+    """Meta"""

@@ -16,6 +16,9 @@ loguru = "*"
 xlrd = "*"
 flask-sse = "*"
 gunicorn = "*"
+orjson = "*"
+pandas = "*"
+jsonschema = "*"
 
 [dev-packages]
 pytest = "*"

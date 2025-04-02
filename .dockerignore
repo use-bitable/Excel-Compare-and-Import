@@ -23,7 +23,7 @@ replit.nix
 .env.alpha
 .env.beta
 .env.dev
-
+tests
 # IDEs and editors
 
 *.iml

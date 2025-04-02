@@ -1,14 +1,18 @@
-from typing import TypedDict, Optional, Any
+from typing import TypedDict, Optional
+
 
 class APIResourceItem(TypedDict):
     """API Resource Item"""
+
     method: str
     path: str
     description: Optional[str]
     need_auth: Optional[bool]
 
+
 class APIMeta(TypedDict):
     """API Meta"""
+
     namespace: str
     version: str
     description: str

@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "page_token": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "page_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "sheet_name": {
+          "type": "string"
+        },
+        "data_range": {
+          "type": ["string", "object"],
+          "properties": {
+            "min_row": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max_row": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "min_col": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max_col": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "header": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

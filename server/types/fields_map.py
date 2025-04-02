@@ -1,4 +1,5 @@
 """Custom type for fieldsMap"""
+
 import json
 
 
@@ -12,9 +13,9 @@ def fields_map(value: str):
     for field in field_map:
         if not isinstance(field, dict):
             raise ValueError("fieldsMap must be a list of objects")
-        if 'name' not in field:
+        if "name" not in field:
             raise ValueError("fieldsMap must have a name")
-        if 'sourceField' not in field and 'config' not in field:
+        if "sourceField" not in field and "config" not in field:
             raise ValueError("fieldsMap must have a sourceField of config")
     return field_map
 
