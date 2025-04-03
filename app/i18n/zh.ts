@@ -190,6 +190,7 @@ export const zh = {
   },
   advancedSetting: {
     advancedSetting: "高级设置",
+    headIndex: "表头所在行",
     parallel: "并行量",
     interval: "间隔时间",
     intervalUnit: "毫秒",

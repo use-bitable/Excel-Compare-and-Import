@@ -126,6 +126,7 @@ export enum UpdateMode {
 }
 
 export interface ImportOptions {
+  headIndex?: number
   parallel?: {
     records: number
     fields: number

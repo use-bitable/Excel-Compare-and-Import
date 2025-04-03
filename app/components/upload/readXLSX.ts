@@ -8,6 +8,7 @@ type ReadError = {
 
 interface readOptions {
   onError?: (error: ReadError) => void
+  headIndex?: number
 }
 
 let XLSX: typeof import("xlsx") | null = null
@@ -24,7 +25,7 @@ export async function readXLSX(
   name: string,
   options: readOptions = {},
 ) {
-  const { onError = null } = options
+  const { onError = null, headIndex = 1 } = options
   try {
     if (!XLSX) XLSX = await initXLSX()
     const workbook = XLSX.read(data, {
@@ -32,11 +33,15 @@ export async function readXLSX(
       raw: true,
       codepage: 65001,
     })
+    const headIndexNum = Math.max(+headIndex - 1, 0)
     const sheets = workbook.SheetNames.map((name) => {
       const sheet = workbook.Sheets[name]
+
+      console.log(`headIndexNum=${headIndexNum}`)
       const tableData = XLSX!.utils.sheet_to_json(sheet, {
         header: 1,
         raw: false,
+        range: headIndexNum,
       }) as any[][]
       if (tableData.length <= 1) return null
       try {

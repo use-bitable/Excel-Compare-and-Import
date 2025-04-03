@@ -4,7 +4,7 @@ onmessage = async function (e) {
   const { data } = e
   const { type, payload } = data
   if (type === "readXLSX") {
-    const { data, name } = payload
+    const { data, name, headIndex } = payload
     const result = await readXLSX(data, name, {
       onError: ({ message, payload }) =>
         postMessage({
@@ -14,6 +14,7 @@ onmessage = async function (e) {
             payload,
           },
         }),
+      headIndex,
     })
     postMessage({ type: "readXLSX", payload: result })
   }
