@@ -14,6 +14,7 @@ import { readXLSX } from "./readXLSX"
 import { useStorage } from "@vueuse/core"
 import { bitable } from "@lark-base-open/js-sdk"
 import defaultOptions from "../../../plugin.config.json"
+import { handleExcelDataInfo } from "@/utils/excelMedia"
 
 const showView = ref(false)
 function toggleShowView() {
@@ -60,6 +61,7 @@ const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
           },
         })
         if (_data === null) excelFile.value = null
+        handleExcelDataInfo(_data)
         resolve(_data)
       } catch (e) {
         Error({
@@ -80,6 +82,7 @@ const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
         const { type, payload } = data
         if (type === "readXLSX") {
           if (payload === null) excelFile.value = null
+          handleExcelDataInfo(payload)
           resolve(payload)
           reader.terminate()
         }
