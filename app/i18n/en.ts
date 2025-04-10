@@ -193,6 +193,7 @@ export const en = {
     whenLastSame: "When the last one is the same",
   },
   advancedSetting: {
+    headIndex: "Head Index",
     parallel: "Parallel",
     interval: "Interval",
     intervalUnit: "ms",

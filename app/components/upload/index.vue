@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted, watchEffect } from "vue"
 import { Upload, Close } from "@element-plus/icons-vue"
 import { genFileId, ElMessage } from "element-plus"
 import type { UploadInstance, UploadFile, UploadRawFile } from "element-plus"
-import type { ExcelDataInfo } from "@/types/types"
+import type { ExcelDataInfo, ImportOptions } from "@/types/types"
 import { useI18n } from "vue-i18n"
 import uploadIcon from "@/components/icons/upload-icon.vue"
 import excelIcon from "@/components/icons/excel-icon.vue"
@@ -11,6 +11,10 @@ import { useFileReader } from "@qww0302/use-bitable"
 import { Error } from "@/utils"
 import viewXLSX from "@/components/view-xlsx/index.vue"
 import { readXLSX } from "./readXLSX"
+import { useStorage } from "@vueuse/core"
+import { bitable } from "@lark-base-open/js-sdk"
+import defaultOptions from "../../../plugin.config.json"
+import { handleExcelDataInfo } from "@/utils/excelMedia"
 
 const showView = ref(false)
 function toggleShowView() {
@@ -20,12 +24,29 @@ function toggleShowView() {
 const upload = ref<UploadInstance>()
 const { t } = useI18n()
 const excelFile = ref<File | null>(null)
+const userId = ref<string>()
+const userOptions = ref<ReturnType<typeof useStorage<ImportOptions>>>()
+
+watchEffect(() => {
+  if (userId.value) {
+    userOptions.value = useStorage<ImportOptions>(
+      `Excel_Compare_and_import-${userId.value}`,
+      defaultOptions,
+      undefined,
+      {
+        mergeDefaults: true,
+      },
+    )
+  }
+})
 
 const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
   load: async (data, resolve) => {
+    const headIndex = userOptions.value?.value.headIndex
     if (typeof Worker === "undefined") {
       try {
         const _data = await readXLSX(data, (excelFile.value as File).name, {
+          headIndex,
           onError: ({ message, payload, error }) => {
             Error({
               title: message,
@@ -40,6 +61,7 @@ const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
           },
         })
         if (_data === null) excelFile.value = null
+        handleExcelDataInfo(_data)
         resolve(_data)
       } catch (e) {
         Error({
@@ -60,6 +82,7 @@ const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
         const { type, payload } = data
         if (type === "readXLSX") {
           if (payload === null) excelFile.value = null
+          handleExcelDataInfo(payload)
           resolve(payload)
           reader.terminate()
         }
@@ -77,12 +100,17 @@ const { data, pending, name } = useFileReader<ExcelDataInfo | null>(excelFile, {
         }
       }
       reader.postMessage({
-        payload: { data, name: excelFile.value?.name },
+        payload: { data, name: excelFile.value?.name, headIndex },
         type: "readXLSX",
       })
     }
   },
   shallow: true,
+})
+
+onMounted(async () => {
+  console.log(t("onMounted"))
+  userId.value = await bitable.bridge.getUserId()
 })
 
 function getFile(file: UploadFile) {

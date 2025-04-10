@@ -266,6 +266,16 @@ interface DownLoadFileOptions {
 export async function downLoadFile(url: string, options?: DownLoadFileOptions) {
   const { fetchOptions } = options ?? {}
   const { method } = fetchOptions ?? {}
+
+  if (url.startsWith("blob:")) {
+    const response = await fetch(url)
+    const blob = await response.blob()
+    const file = new File([blob], getFileName(url, blob.type), {
+      type: blob.type,
+    })
+    options?.onLoaded?.(file)
+    return file
+  }
   if (!validateUrl(url)) {
     // throw new Error("Invalid url")
     return Promise.reject("Invalid url")
