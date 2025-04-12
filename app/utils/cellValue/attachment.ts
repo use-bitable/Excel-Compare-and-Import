@@ -65,7 +65,7 @@ function processDownloadFiles(
   const { onProgress, parallel = 4, onError } = options ?? {}
   const cacheItems = unique(urls)
     .map((url) => {
-      if (!validateUrl(url)) {
+      if (!validateUrl(url) && !url.startsWith("blob:")) {
         onError?.(new Error("Invalid url: " + url))
         return
       }
@@ -195,9 +195,16 @@ export const AttachmentTranslator = defineTranslator({
     options: AsyncParams<string>,
     config?: fieldMap["config"],
   ) => {
-    const { data: urls, onProgress, onError } = options
+    const { data: _urls, onProgress, onError } = options
     const { requestConfig } = config || {}
-    if (!urls.length) return
+    if (!_urls.length) return
+    const urls = _urls.map((i) => {
+      if (Array.isArray(i)) {
+        return i.join(",")
+      } else {
+        return i
+      }
+    })
     await processDownloadFiles(urls, { onProgress, onError, requestConfig })
     const hasFileItems = Object.values(cache).filter((item) => item.file)
     const files = hasFileItems

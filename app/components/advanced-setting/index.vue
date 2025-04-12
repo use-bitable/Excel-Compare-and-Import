@@ -20,6 +20,20 @@ const { t } = useI18n()
 
 <template>
   <el-form>
+    <h2>{{ t("advancedSetting.headIndex") }}</h2>
+    <!-- <el-form-item :label="t('advancedSetting.fields')">
+      <el-input-number
+        v-model="userOptions!.parallel!.fields"
+      ></el-input-number>
+    </el-form-item> -->
+    <el-form-item :label="t('advancedSetting.records')">
+      <el-input-number
+        size="small"
+        :min="1"
+        controls-position="right"
+        v-model="userOptions!.headIndex"
+      ></el-input-number>
+    </el-form-item>
     <h2>{{ t("advancedSetting.parallel") }}</h2>
     <!-- <el-form-item :label="t('advancedSetting.fields')">
       <el-input-number
