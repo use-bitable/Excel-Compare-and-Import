@@ -38,7 +38,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@lark-base-open/js-sdk": "0.5.0",
     "@qww0302/use-bitable": "^1.0.0-alpha.0",
-    "@unhead/vue": "^2.0.0",
+    "@unhead/vue": "^2.0.5",
     "@vueuse/core": "^13.0.0",
     "dayjs": "^1.11.9",
     "element-plus": "^2.4.0",
