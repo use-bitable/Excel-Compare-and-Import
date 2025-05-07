@@ -1,32 +1,19 @@
 from __future__ import annotations
-from enum import Enum
-from typing import TypedDict, Literal, Optional, Union
+from typing import TypedDict, Literal, Optional, Union, Set
 from server.types import FieldType, FieldUIType
 
 
-# class SegmentType(Enum):
-#     TEXT = "text"
-#     MENTION = "mention"
-#     URL = "url"
+# Base Cell Value
 
 type TextSegmentType = Literal["text"]
 type UrlSegmentType = Literal["url"]
 type MentionSegmentType = Literal["mention"]
-
 type SegmentType = Union[
     TextSegmentType,
     UrlSegmentType,
     MentionSegmentType,
 ]
-
-
-# class MentionType(Enum):
-#     USER = "User"
-#     DOCX = "Docx"
-#     SHEET = "Sheet"
-#     BITABLE = "Bitable"
 type DocumentMentionType = Literal["Docx", "Sheet", "Bitable"]
-
 type MentionType = Union[Literal["User"], DocumentMentionType]
 
 
@@ -124,7 +111,7 @@ type SegmentItem = Union[
     DocumentMentionSegment,
 ]
 type SegmentsCellValue = list[SegmentItem]
-type NumberCellValue = float | int
+type NumberCellValue = Union[int, float]
 type SingleSelectCellValue = str
 type MultiSelectCellValue = list[str]
 type DatetimeCellValue = int
@@ -133,10 +120,8 @@ type UserCellValue = list[BaseUser]
 type PhoneCellValue = str
 type AttachmentCellValue = list[AttachmentItem]
 type ChatGroupCellValue = list[ChatGroupItem]
-type CreatedTimeCellValue = int
-type ModifiedTimeCellValue = int
-type CreatedUserCellValue = BaseUser
-type ModifiedUserCellValue = BaseUser
+type CreatedOrModifiedTimeCellValue = int
+type CreatedOrModifiedUserCellValue = BaseUser
 type AutoNumberCellValue = str
 type BasicBaseCellValue = Union[
     SegmentsCellValue,
@@ -167,10 +152,86 @@ type BaseCellValue = Union[
     SingleOrDuplexLinkCellValue,
     locationCellValue,
     ChatGroupCellValue,
-    CreatedTimeCellValue,
-    ModifiedTimeCellValue,
+    CreatedOrModifiedTimeCellValue,
     FormulaOrLookupCellValue,
-    CreatedUserCellValue,
-    ModifiedUserCellValue,
+    CreatedOrModifiedUserCellValue,
     AutoNumberCellValue,
+]
+
+# Cell parsed value
+
+type SegmentsParsedValue = str
+type NumberParsedValue = Union[int, float]
+type SingleSelectParsedValue = str
+type MultiSelectParsedValue = Set[str]
+type DatetimeParsedValue = int
+type CheckboxParsedValue = bool
+type UserParsedValue = Set[str]
+type PhoneParsedValue = str
+type AttachmentParsedValue = list[FileItemValue]
+type ChatGroupParsedValue = Set[str]
+type CreatedOrModifiedTimeParsedValue = int
+type CreatedOrModifiedUserParsedValue = str
+type AutoNumberParsedValue = str
+type FormulaOrLookupParsedValue = str
+type SingleOrDuplexLinkParsedValue = Set[str]
+type UrlParsedValue = UrlCellValue
+type ParsedValue = Union[
+    SegmentsParsedValue,
+    NumberParsedValue,
+    SingleSelectParsedValue,
+    MultiSelectParsedValue,
+    DatetimeParsedValue,
+    CheckboxParsedValue,
+    UserParsedValue,
+    PhoneParsedValue,
+    AttachmentParsedValue,
+    SingleOrDuplexLinkCellValue,
+    locationCellValue,
+    ChatGroupParsedValue,
+    CreatedOrModifiedTimeParsedValue,
+    CreatedOrModifiedUserParsedValue,
+    AutoNumberParsedValue,
+    FormulaOrLookupParsedValue,
+]
+
+# Base write Value
+
+
+class HasIdWriteItem(TypedDict):
+    id: str
+
+
+class AttachmentWriteItem(TypedDict):
+    file_token: str
+
+
+type SegmentsWriteValue = str
+type NumberWriteValue = Union[int, float]
+type SingleSelectWriteValue = str
+type MultiSelectWriteValue = list[str]
+type DatetimeWriteValue = int
+type CheckboxWriteValue = bool
+type UserWriteValue = list[HasIdWriteItem]
+type PhoneWriteValue = str
+type UrlWriteValue = UrlCellValue
+type AttachmentWriteValue = list[AttachmentWriteItem]
+type SingleOrDuplexLinkWriteValue = list[str]
+type LocationWriteValue = str
+type ChatGroupWriteValue = list[HasIdWriteItem]
+"""The latitude and longitude coordinates, for example: "116.397755,39.903179" """
+type CellWriteValue = Union[
+    SegmentsWriteValue,
+    NumberWriteValue,
+    SingleSelectWriteValue,
+    MultiSelectWriteValue,
+    DatetimeWriteValue,
+    CheckboxWriteValue,
+    UserWriteValue,
+    PhoneWriteValue,
+    UrlWriteValue,
+    AttachmentWriteValue,
+    SingleOrDuplexLinkWriteValue,
+    LocationWriteValue,
+    ChatGroupWriteValue,
 ]

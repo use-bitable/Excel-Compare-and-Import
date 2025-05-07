@@ -2,7 +2,7 @@ import re
 from decimal import Decimal
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import NumberCellValue
+from .types import NumberCellValue, NumberWriteValue, NumberParsedValue
 
 
 def parse_number_str(value: str):
@@ -29,7 +29,9 @@ def parse_number_str(value: str):
 
 
 class NumberCellParserPlugin(
-    BasicCellParserPlugin[NumberCellValue | list[NumberCellValue], int | float]
+    BasicCellParserPlugin[
+        NumberCellValue | list[NumberCellValue], NumberParsedValue, NumberWriteValue
+    ]
 ):
     """Number cell value translator"""
 
@@ -55,3 +57,7 @@ class NumberCellParserPlugin(
         if isinstance(value, str):
             return parse_number_str(value)
         return None
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        return value

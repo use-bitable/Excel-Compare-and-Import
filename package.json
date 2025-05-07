@@ -15,7 +15,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:u": "vitest -u",
-    "typecheck": "vitest typecheck"
+    "typecheck": "vitest typecheck",
+    "generate:sdk": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
   },
   "keywords": [
     "Excel",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
+    "@hey-api/openapi-ts": "^0.67.1",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^22.0.0",
     "@vitejs/plugin-vue": "^5.0.0",

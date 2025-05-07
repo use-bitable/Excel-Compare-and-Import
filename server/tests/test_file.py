@@ -36,7 +36,7 @@ def test_file():
             test_user["filename"],
             data,
         )
-        file = fileManager.get_file(file_token)
+        file = fileManager.get_file_from_token(file_token)
         assert os.path.exists(file.file_path)
         fileManager.delete_file(file_token)
     chunk_size = 1 * 1024 * 1024

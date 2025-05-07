@@ -2,7 +2,11 @@ import server.base
 from typing import Set
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import SingleOrDuplexLinkCellValue
+from .types import (
+    SingleOrDuplexLinkCellValue,
+    SingleOrDuplexLinkWriteValue,
+    SingleOrDuplexLinkParsedValue,
+)
 
 DEFAULT_SEPARATOR = ","
 MAX_LINKS_IN_CELL = 500
@@ -10,7 +14,9 @@ MAX_LINKS_IN_CELL = 500
 
 class SingleOrDuplexLinkCellParserPlugin(
     BasicCellParserPlugin[
-        SingleOrDuplexLinkCellValue | list[SingleOrDuplexLinkCellValue], Set[str]
+        SingleOrDuplexLinkCellValue | list[SingleOrDuplexLinkCellValue],
+        SingleOrDuplexLinkParsedValue,
+        SingleOrDuplexLinkWriteValue,
     ]
 ):
     """Single or duplex link cell value translator"""
@@ -58,3 +64,9 @@ class SingleOrDuplexLinkCellParserPlugin(
             for i in link_records[:MAX_LINKS_IN_CELL]
             if isinstance(i, server.base.record.IBaseRecord) and i.id
         }
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        if isinstance(value, set):
+            return list(value)
+        return value

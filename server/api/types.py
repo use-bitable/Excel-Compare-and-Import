@@ -1,7 +1,8 @@
 from typing import TypedDict, Optional
+from pydantic import BaseModel
 
 
-class APIResourceItem(TypedDict):
+class APIResourceItem(BaseModel):
     """API Resource Item"""
 
     method: str
@@ -10,10 +11,12 @@ class APIResourceItem(TypedDict):
     need_auth: Optional[bool]
 
 
-class APIMeta(TypedDict):
+class APIMeta(BaseModel):
     """API Meta"""
 
     namespace: str
     version: str
+    tags: list[str]
+    prefix: str
     description: str
     resource: dict[str, APIResourceItem]

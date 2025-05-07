@@ -1,12 +1,12 @@
 from __future__ import annotations
+import server.file
 from abc import abstractmethod
 from typing import List, Dict, IO, Set, Generator
-from server.file import FileItem
 from .exceptions import NotSupportDataType
 from .types import CanPaginationData, BasicValueType, PaginationConfig, ParsedData
 
 
-class DataParsePlugin[D: (IO, FileItem), RC: dict]:
+class DataParsePlugin[D: (IO, server.file.FileItem), RC: dict]:
     """Data parse plugin"""
 
     @property
@@ -30,7 +30,7 @@ class DataParsePlugin[D: (IO, FileItem), RC: dict]:
         pass
 
 
-class DataParser[D: (IO, FileItem), RC: dict]:
+class DataParser[D: (IO, server.file.FileItem), RC: dict]:
     def __init__(
         self, plugins: List[DataParsePlugin] = [], config: Dict[str, any] = {}
     ) -> None:

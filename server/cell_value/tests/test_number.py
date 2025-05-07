@@ -69,9 +69,11 @@ from enum import Enum
 
 # print(i is item)
 # print(attachments["dsfcsssssfcs"] is item)
-class TestEnum(Enum):
-    A = "A"
-    B = "B"
+# class TestEnum(Enum):
+#     A = "A"
+#     B = "B"
 
 
-print(TestEnum("A") == "A")
+# print(TestEnum("A") == "A")
+
+print((1) == (1.0))

@@ -3,7 +3,13 @@ from functools import lru_cache
 from server.file import fileManager
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import AttachmentCellValue, FileItemValue
+from .types import (
+    AttachmentCellValue,
+    FileItemValue,
+    AttachmentWriteValue,
+    AttachmentWriteItem,
+    AttachmentParsedValue,
+)
 
 DEFAULT_SEPARATOR = ","
 ATTACHMENTS_NUM_LIMIT_IN_CELL = 100
@@ -12,7 +18,7 @@ ATTACHMENTS_NUM_LIMIT_IN_CELL = 100
 @lru_cache(maxsize=128)
 def get_attachment_file_path(token: str, name: str) -> str:
     """Get the cache file path for the given file token"""
-    file_item = fileManager.get_file(token)
+    file_item = fileManager.get_file_from_token(token)
     return os.path.join(
         file_item.dir_path,
         "attachments",
@@ -29,7 +35,9 @@ def create_attachment_item(
 
 
 class AttachmentCellParserPlugin(
-    BasicCellParserPlugin[AttachmentCellValue, FileItemValue]
+    BasicCellParserPlugin[
+        AttachmentCellValue, AttachmentParsedValue, AttachmentWriteValue
+    ]
 ):
     """Attachment cell value translator"""
 
@@ -109,5 +117,14 @@ class AttachmentCellParserPlugin(
                 )
                 for i in value[:ATTACHMENTS_NUM_LIMIT_IN_CELL]
                 if isinstance(i, dict)
+            ]
+        return None
+
+    def to_write_value(self, value, context, field):
+        if value:
+            return [
+                AttachmentWriteItem(file_token=i.get("file_token"))
+                for i in value
+                if isinstance(i, dict) and i.get("file_token")
             ]
         return None

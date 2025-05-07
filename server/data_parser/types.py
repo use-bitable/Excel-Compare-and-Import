@@ -1,4 +1,5 @@
 from typing import TypedDict, Optional, Literal, Required, Any
+from datetime import datetime
 
 
 class PaginationConfig[C: dict](TypedDict):
@@ -52,7 +53,7 @@ class FileValue(TypedDict):
 
 
 type CanPaginationData[D] = PaginationData[D] | D
-type BasicValueType = str | int | float | bool | None | UrlValue | list[FileValue]
+type BasicValueType = str | int | float | bool | None | UrlValue | list[FileValue] | datetime
 
 
 class DataMeta(TypedDict):
@@ -61,7 +62,7 @@ class DataMeta(TypedDict):
     fields: list[str]
     """Fields"""
     total: int
-    """Total count"""
+    """Total count""" 
     can_parse: bool
     """Can parse"""
     errors: list[str]
@@ -77,3 +78,16 @@ class ParsedData(TypedDict):
     """Parsed data"""
     meta: DataMeta
     """Meta"""
+
+
+class DataRange(TypedDict):
+    """Data range"""
+
+    min_row: Required[int]
+    """Min row"""
+    max_row: Required[int]
+    """Max row"""
+    min_col: Required[int]
+    """Min column"""
+    max_col: Required[int]
+    """Max column"""

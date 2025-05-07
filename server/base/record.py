@@ -16,7 +16,6 @@ from .exceptions import ListRecordsException
 from .field import IBaseField
 from .cell import ICell
 from .const import (
-    BASE_REQUEST_SUCCESS_CODE,
     MAX_GET_RECORDS_ONCE_LIMIT,
     MAX_CREATE_RECORDS_ONCE_LIMIT,
     MAX_DELETE_RECORDS_ONCE_LIMIT,
@@ -124,7 +123,7 @@ def add_records_to_base(
     res: BatchCreateAppTableRecordResponse = (
         base_client.base.v1.app_table_record.batch_create(req.build())
     )
-    if res.code != BASE_REQUEST_SUCCESS_CODE:
+    if not res.success():
         raise RequestException(f"Failed to add records: {res.msg}")
     return res.data.records
 
@@ -166,7 +165,7 @@ def batch_add_records_to_base(
 
 class IRecord:
 
-    __slots__ = ("cells", "index")
+    __slots__ = ("cells", "index", "id")
 
     cells: dict[str, ICell]
     index: Optional[tuple]

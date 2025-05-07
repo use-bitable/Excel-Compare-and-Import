@@ -1,14 +1,16 @@
 from __future__ import annotations
 from server.types import FieldType, FieldUIType
 from .core import BasicCellParserPlugin
-from .types import SegmentsCellValue
+from .types import SegmentsCellValue, SegmentsWriteValue, SegmentsParsedValue
 
 
 def parse_text(value: SegmentsCellValue):
     return "".join([i.get("text") for i in value])
 
 
-class SegmentsCellParserPlugin(BasicCellParserPlugin[SegmentsCellValue, str]):
+class SegmentsCellParserPlugin(
+    BasicCellParserPlugin[SegmentsCellValue, SegmentsParsedValue, SegmentsWriteValue]
+):
     """Segments cell value translator"""
 
     field_type = [FieldType.Segments]
@@ -33,3 +35,6 @@ class SegmentsCellParserPlugin(BasicCellParserPlugin[SegmentsCellValue, str]):
             return None
         if isinstance(value, dict):
             return value.get("text") if value.get("type") == "url" else None
+
+    def to_write_value(self, value, context, field):
+        return value

@@ -2,7 +2,7 @@ import arrow
 from decimal import Decimal
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import DatetimeCellValue
+from .types import DatetimeCellValue, DatetimeWriteValue, DatetimeParsedValue
 
 DEFAULT_DATETIME_FORMAT = ["YYYY/MM/DD"]
 
@@ -18,7 +18,11 @@ def parse_datetime_str(value: str, format: str | list[str] = DEFAULT_DATETIME_FO
 
 
 class DatetimeParserPlugin(
-    BasicCellParserPlugin[DatetimeCellValue | list[DatetimeCellValue], int]
+    BasicCellParserPlugin[
+        DatetimeCellValue | list[DatetimeCellValue],
+        DatetimeParsedValue,
+        DatetimeWriteValue,
+    ]
 ):
     """Datetime cell value translator"""
 
@@ -48,3 +52,7 @@ class DatetimeParserPlugin(
         if isinstance(value, str):
             return parse_datetime_str(value, format)
         return None
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        return value

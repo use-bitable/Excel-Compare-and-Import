@@ -2,6 +2,7 @@
 
 import os
 import sys
+import uvicorn
 from getopt import getopt
 from dotenv import load_dotenv
 
@@ -20,7 +21,13 @@ def main(argv: list):
     from server.log import logger
 
     logger.info(f"Running in {mode} mode")
-    app.run(host=host, port=port, debug=mode == "dev")
+    # app.run(host=host, port=port, debug=mode == "dev")
+    uvicorn.run(
+        app,
+        host=host,
+        port=port,
+        log_level="info",
+    )
     return mode
 
 

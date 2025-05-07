@@ -128,7 +128,7 @@ def test_preview():
         xls_token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xls", f.read()
         )
-        xls_file_item = fileManager.get_file(xls_token)
+        xls_file_item = fileManager.get_file_from_token(xls_token)
     for test_case in TEST_CASES:
         run_xls_test_case(xls_file_item, test_case)
     for row in dataParser.parse(get_file_type(xls_file_item.file_path), xls_file_item):

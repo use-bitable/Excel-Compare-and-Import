@@ -5,7 +5,7 @@ import itertools
 from io import FileIO
 from typing import DefaultDict
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, time, timedelta, date
 from concurrent.futures import ThreadPoolExecutor
 from PIL import Image
 from openpyxl import load_workbook, Workbook
@@ -14,7 +14,6 @@ from openpyxl.cell import Cell, ReadOnlyCell
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.drawing.image import Image as SheetImage
 from server.file import FileItem, get_md5_from_bytes
-from server.utils import datetime_to_timestamp_ms
 from .constants import (
     DEFAULT_SHEET_NAME,
     DEFAULT_HEADER,
@@ -38,7 +37,7 @@ def parse_cell(cell: Cell | ReadOnlyCell) -> BasicValueType:
     """Parse the cell value"""
     if not isinstance(cell, ReadOnlyCell):
         link = cell.hyperlink
-        if not link is None:
+        if link is not None:
             return {
                 "url": str(link.target),
                 "text": str(link.display),
@@ -47,8 +46,12 @@ def parse_cell(cell: Cell | ReadOnlyCell) -> BasicValueType:
     value = cell.value
     if value is None or isinstance(value, (str, int, float, bool)):
         return value
+    if isinstance(value, time):
+        d = date.today()
+        dt = datetime.combine(d, value)
+        return dt
     if isinstance(value, datetime):
-        return datetime_to_timestamp_ms(value)
+        return value
 
 
 def parse_data_range(
@@ -323,15 +326,14 @@ def paginate_load_xlsx(
     if sheet_name is None:
         sheet_name = sheet_names[0]
     ws = wb[sheet_name]
+    _default_range = [
+        ws.min_column,
+        ws.min_row,
+        ws.max_column,
+        ws.max_row,
+    ]
     _min_col, _min_row, _max_col, _max_row = (
-        (
-            ws.min_column,
-            ws.min_row,
-            ws.max_column,
-            ws.max_row,
-        )
-        if all([c is None for c in data_range])
-        else data_range
+        v if v is not None else _default_range[i] for i, v in enumerate(data_range)
     )
     has_more = True
     images = thread_load_images(ws, data) if not performance_mode else {}

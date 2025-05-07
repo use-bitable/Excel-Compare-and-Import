@@ -36,3 +36,6 @@ class InValidUrlException(Exception):
 
 class GetFileFromUrlException(Exception):
     """Get File From URL Error"""
+
+class NoPermissionException(Exception):
+    """No Permission Error"""

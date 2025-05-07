@@ -1,6 +1,7 @@
 import os
+from fastapi.responses import ORJSONResponse
 from server.file import read_json_file
-
+from server.schemes import ResponseStatusCode, BasicResponseModel
 
 def get_meta(version: str, namespace: str):
     return read_json_file(
@@ -8,21 +9,18 @@ def get_meta(version: str, namespace: str):
     )
 
 
-def pagenate(
-    cls,
-    *,
-    page_size: int,
-    page_token: int | None,
+def make_response(
+    code: ResponseStatusCode = ResponseStatusCode.SUCCESS,
+    data=None,
+    msg="success",
 ):
-    """Pagenate decorator"""
-
-    def wrapper(func):
-        def wrapped(*args, **kwargs):
-            data = func(*args, **kwargs)
-            if page_token is not None:
-                data = data[page_token : page_token + page_size]
-            return data
-
-        return wrapped
-
-    return wrapper
+    res: BasicResponseModel = {
+        "code": code,
+    }
+    if data:
+        res["data"] = data
+    if msg:
+        res["message"] = msg
+    return ORJSONResponse(
+        content=res,
+    )

@@ -1,17 +1,5 @@
-from typing import TypedDict, Optional, Required
-
-
-class DataRange(TypedDict):
-    """Data range"""
-
-    min_row: Required[int]
-    """Min row"""
-    max_row: Required[int]
-    """Max row"""
-    min_col: Required[int]
-    """Min column"""
-    max_col: Required[int]
-    """Max column"""
+from typing import TypedDict, Optional
+from ..types import DataRange
 
 
 class ReadXLSXConfig(TypedDict):

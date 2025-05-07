@@ -134,7 +134,7 @@ class IBase:
             )
 
     def _verify_personal_base_token(self):
-        req = GetAppRequestBuilder.build()
+        req = GetAppRequestBuilder().build()
         res = self.client.base.v1.app.get(req)
         if not res.success():
             raise VerifyPersonalBaseTokenException(f"Error[{res.code}]: {res.msg}")

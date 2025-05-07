@@ -1,10 +1,11 @@
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import FormulaOrLookupCellValue
+from .types import FormulaOrLookupCellValue, FormulaOrLookupParsedValue
+from .exceptions import NotWritableFieldTypeException
 
 
 class FormulaOrLookupCellParserPlugin(
-    BasicCellParserPlugin[FormulaOrLookupCellValue, str]
+    BasicCellParserPlugin[FormulaOrLookupCellValue, FormulaOrLookupParsedValue, None]
 ):
     """Formula or Lookup cell value translator"""
 
@@ -37,3 +38,9 @@ class FormulaOrLookupCellParserPlugin(
         if isinstance(value, (int, float, bool)):
             return str(value)
         return None
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        raise NotWritableFieldTypeException(
+            "Formula or Lookup cell value cannot be written"
+        )

@@ -1,5 +1,5 @@
-from typing import TypedDict, Optional, Required
-from ..xlsx import DataRange
+from typing import TypedDict, Optional
+from ..types import DataRange
 
 
 class ReadXLSConfig(TypedDict):

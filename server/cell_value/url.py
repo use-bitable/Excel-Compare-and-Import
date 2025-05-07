@@ -1,11 +1,13 @@
 from typing import Optional, TypedDict
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import UrlCellValue
+from .types import UrlCellValue, UrlWriteValue, UrlParsedValue
 
 
 class UrlCellParserPlugin(
-    BasicCellParserPlugin[UrlCellValue | list[UrlCellValue], UrlCellValue]
+    BasicCellParserPlugin[
+        UrlCellValue | list[UrlCellValue], UrlParsedValue, UrlWriteValue
+    ]
 ):
     """Url cell value translator"""
 
@@ -41,3 +43,7 @@ class UrlCellParserPlugin(
             "text": str(value),
             "link": str(value),
         }
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        return value

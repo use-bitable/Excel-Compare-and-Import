@@ -1,5 +1,7 @@
 {
   "namespace": "file",
+  "prefix": "/file",
+  "tags": ["file"],
   "version": "v1",
   "description": "File API",
   "resource": {

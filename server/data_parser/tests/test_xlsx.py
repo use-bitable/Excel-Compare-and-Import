@@ -41,6 +41,20 @@ TEST_CASES: list[TestCase[ReadXLSXConfig, PaginationData[ParsedData]]] = [
         ],
     },
     {
+        "description": "Test preview xlsx with data_range",
+        "config": {
+            "page_size": 200,
+            "page_token": None,
+            "config": {"data_range": "1:12"},
+        },
+        "judge": [
+            (
+                lambda data: len(data["data"]["data"]) == 11,
+                "The length of data is not 11.",
+            ),
+        ],
+    },
+    {
         "description": "Test preview xlsx with page token 1",
         "config": {
             "page_size": 200,
@@ -140,12 +154,12 @@ def run_xlsx_test_case(
 
 
 def test_xlsx():
-    with TemporaryDirectory() as cache_path, open(XLSX_FILE_PATH, "rb") as f:
+    with TemporaryDirectory(dir="") as cache_path, open(XLSX_FILE_PATH, "rb") as f:
         fileManager = FileManager(cache_path, fileTokenManager, user_limit=None)
         xlsx_token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xlsx", f.read()
         )
-        xlsx_file_item = fileManager.get_file(xlsx_token)
+        xlsx_file_item = fileManager.get_file_from_token(xlsx_token)
         for test_case in TEST_CASES:
             run_xlsx_test_case(xlsx_file_item, test_case)
         for row in dataParser.parse(
@@ -160,7 +174,7 @@ def test_xlsm():
         xlsx_token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xlsm", f.read()
         )
-        xlsx_file_item = fileManager.get_file(xlsx_token)
+        xlsx_file_item = fileManager.get_file_from_token(xlsx_token)
         for test_case in TEST_CASES:
             run_xlsx_test_case(xlsx_file_item, test_case)
         for row in dataParser.parse(
@@ -175,7 +189,8 @@ def test_xltm():
         xlsx_token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xltm", f.read()
         )
-        xlsx_file_item = fileManager.get_file(xlsx_token)
+        f.close()
+        xlsx_file_item = fileManager.get_file_from_token(xlsx_token)
         for test_case in TEST_CASES:
             run_xlsx_test_case(xlsx_file_item, test_case)
         for row in dataParser.parse(
@@ -190,7 +205,7 @@ def test_xltx():
         xlsx_token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xltx", f.read()
         )
-        xlsx_file_item = fileManager.get_file(xlsx_token)
+        xlsx_file_item = fileManager.get_file_from_token(xlsx_token)
         for test_case in TEST_CASES:
             run_xlsx_test_case(xlsx_file_item, test_case)
         for row in dataParser.parse(

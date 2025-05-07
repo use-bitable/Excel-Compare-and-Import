@@ -1,15 +1,14 @@
 from __future__ import annotations
 from abc import abstractmethod
-from typing import Callable, Optional
-from baseopensdk import BaseClient
+from typing import Optional
 from server.base.field import IBaseField
 from server.data_parser.types import BasicValueType
-from server.types import FieldType, RawValueType
+from server.types import FieldType
 from .types import BaseCellValue
-from .exceptions import NotSupportFieldTypeException
+from .exceptions import NotSupportFieldTypeException, ParseValueException
 
 
-class BasicCellParserPlugin[BV: BaseCellValue, PV]:
+class BasicCellParserPlugin[BV: BaseCellValue, PV, WV]:
     """Cell parser plugin"""
 
     @property
@@ -41,6 +40,13 @@ class BasicCellParserPlugin[BV: BaseCellValue, PV]:
         """Parse base cell value"""
         pass
 
+    @abstractmethod
+    def to_write_value(
+        self, value: Optional[PV], context: CellTranslator, field: IBaseField
+    ) -> Optional[WV]:
+        """Convert to write value"""
+        pass
+
 
 class CellTranslator:
     """Cell translator"""
@@ -55,7 +61,7 @@ class CellTranslator:
 
     def parse_base_value(
         self, type: FieldType, field: Optional[IBaseField], value: BaseCellValue
-    ) -> RawValueType:
+    ):
         """Translate cell"""
         if type not in self._plugins:
             raise NotSupportFieldTypeException(
@@ -65,7 +71,7 @@ class CellTranslator:
         try:
             return plugin.parse_base_value(value, self, field)
         except Exception as e:
-            raise NotSupportFieldTypeException(
+            raise ParseValueException(
                 f"Parse base cell value for {field} error: {e}"
             ) from e
 
@@ -80,7 +86,7 @@ class CellTranslator:
         try:
             return plugin.parse_data_value(value, self, field)
         except Exception as e:
-            raise NotSupportFieldTypeException(
+            raise ParseValueException(
                 f"Parse data cell value for {field} error: {e}"
             ) from e
 
@@ -90,10 +96,17 @@ class CellTranslator:
         for type in types:
             self._plugins[type] = plugin
 
-
-type NormalizeFunc[T, R] = Callable[[T, IBaseField, Optional[str]], R]
-type BasicNPFunc = Callable[[str], None]
-type RefreshFunc = BasicNPFunc
-type ResetFunc = BasicNPFunc
-type OnErrorFunc = Callable[[Exception], None]
-type AsyncDataFunc[R] = Callable[[str, BaseClient, IBaseField, OnErrorFunc], R]
+    def get_write_value(self, field: IBaseField, value):
+        """Get write value"""
+        field_type = field.type
+        if field_type not in self._plugins:
+            raise NotSupportFieldTypeException(
+                f"Field type {field.ui_type} not support: {field}"
+            )
+        plugin = self._plugins[field_type]
+        try:
+            return plugin.to_write_value(value, self, field)
+        except Exception as e:
+            raise ParseValueException(
+                f"Get write cell value for {field} error: {e}"
+            ) from e

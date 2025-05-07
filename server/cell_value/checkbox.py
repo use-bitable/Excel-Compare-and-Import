@@ -1,6 +1,6 @@
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import CheckboxCellValue
+from .types import CheckboxCellValue, CheckboxWriteValue, CheckboxParsedValue
 
 DEFAULT_BOOL_VALUE = {
     "true": ["是", "True", "true", "TRUE", "1", "☑️"],
@@ -9,7 +9,11 @@ DEFAULT_BOOL_VALUE = {
 
 
 class CheckboxCellParserPlugin(
-    BasicCellParserPlugin[CheckboxCellValue | list[CheckboxCellValue], bool]
+    BasicCellParserPlugin[
+        CheckboxCellValue | list[CheckboxCellValue],
+        CheckboxParsedValue,
+        CheckboxWriteValue,
+    ]
 ):
     """Checkbox cell value translator"""
 
@@ -35,3 +39,7 @@ class CheckboxCellParserPlugin(
         if isinstance(value, str):
             return value in (bool_value.get("true") or bool_value.get("false"))
         return False
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        return value

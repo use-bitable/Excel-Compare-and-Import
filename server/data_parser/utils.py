@@ -1,11 +1,10 @@
 import os
-import asyncio
 import functools
 from typing import Callable
 
 import orjson
 
-from server.file import async_create_file
+from server.file import create_file
 from .types import BasicValueType
 
 
@@ -27,7 +26,7 @@ def data_cache[C: dict, F: Callable](
             # cache_path = os.path.join(f.dir_path, "cache", cache_dir, f"{key}.json")
             if not os.path.exists(key):
                 data = func(*args, **kwargs)
-                asyncio.run(async_create_file(key, orjson.dumps(data), "wb"))
+                create_file(key, orjson.dumps(data), "wb")
                 return data
             with open(key, "rb") as file:
                 return orjson.loads(file.read())

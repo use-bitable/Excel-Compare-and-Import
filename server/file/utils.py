@@ -1,6 +1,6 @@
 import os
 import hashlib
-import requests
+import httpx
 import re
 from typing import IO
 import orjson
@@ -61,9 +61,9 @@ def get_file_md5(filename: str | IO):
     Returns:
         str: MD5
     """
+    h = hashlib.md5()
+    need_close = False
     try:
-        h = hashlib.md5()
-        need_close = False
         if isinstance(filename, str):
             f = open(filename, "rb")
             need_close = True
@@ -71,11 +71,12 @@ def get_file_md5(filename: str | IO):
             f = filename
         while chunk := f.read(128 * h.block_size):
             h.update(chunk)
-        if need_close:
-            f.close()
-        return h.digest().hex()
     except Exception as e:
         raise CaculateMD5Exception(f"Caculate {filename} MD5 error: {e}")
+    finally:
+        if need_close:
+            f.close()
+    return h.digest().hex()
 
 
 def get_md5_from_bytes(data: bytes):
@@ -93,13 +94,19 @@ def read_json_file(file: str, mode: str = "rb"):
     return orjson.loads(read_file(file, mode=mode))
 
 
-def get_file_from_url(url: str):
-    #  validate url
+def get_file_from_url(
+    url: str, timeout: int = 10, headers: httpx._models.HeaderTypes = None
+) -> bytes:
+    """Get file from http/https/ftp url"""
+
+    # validate url
     url_protocol_pattern = r"^(http|https|ftp)://"
     if not re.match(url_protocol_pattern, url):
-        raise InValidUrlException(f"Invalid url: {url}, must start with http/https")
-
-    r = requests.get(url)
-    if r.status_code != 200:
-        raise GetFileFromUrlException(f"Get file from {url} error: {r.text}")
-    return r.content
+        raise InValidUrlException(f"Invalid url: {url}, must start with http/https/ftp")
+    try:
+        r = httpx.get(url, timeout=timeout, headers=headers)
+        if r.status_code != 200:
+            raise GetFileFromUrlException(f"Get file from {url} error: {r.text}")
+        return r.content
+    except Exception as e:
+        raise GetFileFromUrlException(f"Get file from {url} error: {e}")

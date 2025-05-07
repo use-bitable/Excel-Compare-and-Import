@@ -1,7 +1,7 @@
 import re
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import PhoneCellValue
+from .types import PhoneCellValue, PhoneWriteValue, PhoneParsedValue
 
 PHONE_LENGTH_LIMIT = 64
 PHONE_REGEX = "(+)?\d*"
@@ -19,7 +19,9 @@ def parse_phone_str(value: str):
 
 
 class PhoneCellParserPlugin(
-    BasicCellParserPlugin[PhoneCellValue | list[PhoneCellValue], str]
+    BasicCellParserPlugin[
+        PhoneCellValue | list[PhoneCellValue], PhoneParsedValue, PhoneWriteValue
+    ]
 ):
     """Phone cell value translator"""
 
@@ -45,5 +47,6 @@ class PhoneCellParserPlugin(
             return parse_phone_str(value)
         return None
 
-    def to_index(self, value):
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
         return value

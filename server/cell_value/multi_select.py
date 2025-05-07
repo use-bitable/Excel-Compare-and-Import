@@ -1,7 +1,7 @@
 from typing import Optional, Set
 from server.types import FieldType
 from .core import BasicCellParserPlugin
-from .types import MultiSelectCellValue
+from .types import MultiSelectCellValue, MultiSelectWriteValue, MultiSelectParsedValue
 
 OPTIONS_IN_CELL_LIMIT = 1000
 DEFAULT_SEPARATOR = ","
@@ -14,7 +14,9 @@ def parse_multiselect_str(
 
 
 class MultiSelectCellParserPlugin(
-    BasicCellParserPlugin[MultiSelectCellValue, Set[str]]
+    BasicCellParserPlugin[
+        MultiSelectCellValue, MultiSelectParsedValue, MultiSelectWriteValue
+    ]
 ):
     """Multi select cell value translator"""
 
@@ -45,3 +47,9 @@ class MultiSelectCellParserPlugin(
         if isinstance(value, (int, float, bool)):
             return {str(value)}
         return None
+
+    def to_write_value(self, value, context, field):
+        """Convert to write value"""
+        if isinstance(value, set):
+            return list(value)
+        return value

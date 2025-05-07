@@ -1,21 +1,5 @@
 from typing import TypedDict, Optional, Any
-from enum import IntEnum
-
-
-class ResponseStatusCode(IntEnum):
-    SUCCESS = 0
-    INVALIDATE_PARAMS = 1
-    INTERNAL_ERROR = 2
-
-    # file 10xx
-    FILE_EXCEEDED_LIMIT = 1001
-    INVALIDATE_File = 1002
-
-    # auth 20xx
-    UNAUTHORIZED = 2001
-    INVALIDATE_TOKEN = 2002
-    NO_PERSONAL_BASE_TOKEN = 2003
-
+from server.schemes import ResponseStatusCode
 
 class Response(TypedDict):
     """Response class"""

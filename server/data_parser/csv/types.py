@@ -1,5 +1,8 @@
-from typing import TypedDict, Optional, Required
-from ..xlsx import DataRange
+from typing import TypedDict, Optional, Literal
+from pydantic import BaseModel, Field
+from server.schemes import DataSourceModel
+from ..types import DataRange
+
 
 
 class ReadCSVConfig(TypedDict):

@@ -1,57 +1,76 @@
 from __future__ import annotations
 import server.base
-import server.cell_value
-from server.types import FieldType, FieldUIType, RawValueType
+from abc import abstractmethod
 from server.data_parser.types import BasicValueType
-from .const import AUTO_FIELD_TYPES
+from server.cell_value.types import BaseCellValue
 
-
-class ICell(object):
+class ICell[V]:
     """Interface for cell"""
 
-    __slots__ = ["raw_value", "auto", "type", "ui_type", "parsed_value", "field_id"]
+    __slots__ = ["_raw_value", "parsed_value", "field"]
 
-    raw_value: BasicValueType | server.cell_value.BaseCellValue
-    auto: bool
+    _raw_value: V
 
-    def __init__(
-        self,
-        value: RawValueType | server.cell_value.BaseCellValue,
-        field_id: str,
-        type: FieldType,
-        ui_type: FieldUIType,
-        parsed_value=None,
-    ) -> None:
+    def __init__(self, value: V, field: server.base.field.IBaseField) -> None:
         self.raw_value = value
-        self.type = type
-        self.ui_type = ui_type
-        self.auto = type in AUTO_FIELD_TYPES
-        self.parsed_value = parsed_value
-        self.field_id = field_id
+        self.field = field
 
-    @staticmethod
-    def create_cell(
-        value: RawValueType, field: server.base.field.IBaseField, parsed_value=None
-    ) -> ICell:
-        """Create cell"""
-        return ICell(
-            value, field.id, field.type, field.ui_type, parsed_value=parsed_value
-        )
+    @property
+    def raw_value(self) -> V:
+        return self._raw_value
+
+    @raw_value.setter
+    def raw_value(self, value: V):
+        self._raw_value = value
+        self.parsed_value = self.parse_value(value)
+
+    @abstractmethod
+    def parse_value(self, value: V):
+        pass
 
     def __eq__(self, obj: object) -> bool:
         if not isinstance(obj, ICell):
-            return self.raw_value == obj
-        return self.raw_value == obj.raw_value
+            return self.parse_value == obj
+        return self.parsed_value == obj.parsed_value
+
+
+class IBaseCell(ICell[BaseCellValue]):
+    """Base cell class"""
+
+    def __init__(
+        self,
+        value: BaseCellValue,
+        field: server.base.field.IBaseField,
+    ) -> None:
+        super().__init__(value, field)
+
+    def parse_value(self, value: BaseCellValue):
+        field = self.field
+        return server.cell_value.CELL_PARSER.parse_base_value(field.type, field, value)
+
+
+class IDataCell(ICell[BasicValueType]):
+    """Data cell class"""
+
+    def __init__(
+        self,
+        value: BasicValueType,
+        field: server.base.field.IBaseField,
+    ) -> None:
+        super().__init__(value, field)
+
+    def parse_value(self, value):
+        return server.cell_value.CELL_PARSER.parse_data_value(
+            self.field,
+            value,
+        )
 
 
 class IDiffCell(ICell):
 
     def __init__(
         self,
-        value: RawValueType,
+        value: BasicValueType,
         field: server.base.field.IBaseField,
-        parsed_value=None,
     ) -> None:
-        super().__init__(
-            value, field.id, field.type, field.ui_type, parsed_value=parsed_value
-        )
+        super().__init__(value, field)

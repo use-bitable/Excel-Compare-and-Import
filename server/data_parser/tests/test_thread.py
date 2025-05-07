@@ -15,7 +15,7 @@ def test_load_images():
         token = fileManager.save_file(
             "tenant_key", "base_id", "user_id", "test.xlsx", f.read()
         )
-        file_item = fileManager.get_file(token)
+        file_item = fileManager.get_file_from_token(token)
         wb = load_workbook(f)
         ws = wb[DEFAULT_SHEET_NAME]
         start = time()
