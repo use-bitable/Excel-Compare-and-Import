@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from server.schemes import ResponseStatusCode
+from app.schemes import ResponseStatusCode
 
 class NormalApiException(Exception):
     """

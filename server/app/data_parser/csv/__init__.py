@@ -1,5 +1,5 @@
-from server.file import FileItem
-from server.data_parser.core import DataParsePlugin
+from app.file import FileItem
+from app.data_parser.core import DataParsePlugin
 from .types import ReadCSVConfig
 from .read_csv import *
 from .constants import SUPPORTED_TYPES

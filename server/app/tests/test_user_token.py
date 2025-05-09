@@ -1,4 +1,4 @@
-from server.user import serialize_security_key, get_user_token_manager, UserTokenMeta
+from app.user import serialize_security_key, get_user_token_manager, UserTokenMeta
 
 
 def test_user_token():

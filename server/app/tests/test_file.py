@@ -3,11 +3,11 @@
 import os
 import math
 import shutil
-from server.token import TokenManager
-from server.file.core import FileManager, FileTokenMeta
-from server.file.constants import FILE_CACHE_DIR, USER_LIMIT, SIZE_LIMIT
-from server.file.utils import get_file_md5
-from server.tests.utils import DEFAULT_SECURITY_KEY
+from app.token import TokenManager
+from app.file.core import FileManager, FileTokenMeta
+from app.file.constants import FILE_CACHE_DIR, USER_LIMIT, SIZE_LIMIT
+from app.file.utils import get_file_md5
+from app.tests.utils import DEFAULT_SECURITY_KEY
 
 fileTokenManager = TokenManager(FileTokenMeta, DEFAULT_SECURITY_KEY)
 

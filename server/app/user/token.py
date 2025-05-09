@@ -1,4 +1,4 @@
-from server.token import TokenMeta, tokenclass, TokenManager
+from app.token import TokenMeta, tokenclass, TokenManager
 
 
 @tokenclass

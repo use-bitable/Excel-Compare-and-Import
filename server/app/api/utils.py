@@ -1,7 +1,7 @@
 import os
 from fastapi.responses import ORJSONResponse
-from server.file import read_json_file
-from server.schemes import ResponseStatusCode, BasicResponseModel
+from app.file import read_json_file
+from app.schemes import ResponseStatusCode, BasicResponseModel
 
 def get_meta(version: str, namespace: str):
     return read_json_file(

@@ -1,6 +1,6 @@
 from baseopensdk import BaseClient, FEISHU_DOMAIN
 from enum import Enum
-from server.base.record import get_base_table_records
+from app.base.record import get_base_table_records
 
 
 # def test_get_records():

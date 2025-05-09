@@ -1,8 +1,8 @@
 from typing import Annotated
 from fastapi import Header, Depends
 from fastapi.security import OAuth2PasswordBearer
-from server.schemes import User
-from server.user import get_user_token_manager
+from app.schemes import User
+from app.user import get_user_token_manager
 from ..exceptions import ApiAuthenticationFailedException
 
 
