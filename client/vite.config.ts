@@ -121,7 +121,7 @@ export default ({ mode }: { mode: string }) => {
         interopDefault: true,
         moduleDirectories: ["node_modules"],
       },
-      include: ["test/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
+      include: ["tests/**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     },
     worker: {
       format: "es",
