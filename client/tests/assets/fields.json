@@ -1,0 +1,2235 @@
+[
+  {
+    "key": "fldKQcB9zy",
+    "field": {
+      "id": "fldKQcB9zy",
+      "type": 99001,
+      "name": "条码",
+      "property": {
+        "onlyMobile": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "flddvWOFjF",
+    "field": {
+      "id": "flddvWOFjF",
+      "type": 0,
+      "name": "邮箱",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldWhjuyj2",
+    "field": {
+      "id": "fldWhjuyj2",
+      "type": 99004,
+      "name": "评分",
+      "property": {
+        "rating": {
+          "icon": "flower"
+        },
+        "min": 1,
+        "max": 5
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldsrfvpW6",
+    "field": {
+      "id": "fldsrfvpW6",
+      "type": 4,
+      "name": "多选",
+      "property": {
+        "options": [
+          {
+            "id": "optdPbSDZW",
+            "color": 0,
+            "name": "a"
+          },
+          {
+            "name": "c",
+            "id": "optJ4SsECR",
+            "color": 1
+          },
+          {
+            "name": "v",
+            "id": "optMk7nuh4",
+            "color": 2
+          },
+          {
+            "name": " c",
+            "id": "optKMK1dxk",
+            "color": 3
+          },
+          {
+            "id": "optJg9yRPv",
+            "color": 4,
+            "name": " v"
+          },
+          {
+            "name": "n",
+            "id": "optQIbePAJ",
+            "color": 5
+          },
+          {
+            "id": "optiVPGKIa",
+            "color": 6,
+            "name": "m"
+          },
+          {
+            "id": "optz4MUPcq",
+            "color": 7,
+            "name": " n"
+          },
+          {
+            "name": " m",
+            "id": "optEL9fZkl",
+            "color": 8
+          }
+        ],
+        "optionsType": 0
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "separator": ","
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldTQFoxJ6",
+    "field": {
+      "id": "fldTQFoxJ6",
+      "type": 99003,
+      "name": "货币",
+      "property": {
+        "decimalDigits": 2,
+        "currencyCode": "CNY"
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fld6e3rfKX",
+    "field": {
+      "id": "fld6e3rfKX",
+      "type": 1001,
+      "name": "创建时间",
+      "property": {
+        "dateFormat": "yyyy/MM/dd",
+        "displayTimeZone": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "format": "YYYY/MM/DD"
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "flddPTvKvV",
+    "field": {
+      "id": "flddPTvKvV",
+      "type": 5,
+      "name": "文本 3",
+      "property": {
+        "dateFormat": "yyyy/MM/dd",
+        "displayTimeZone": false,
+        "autoFill": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "format": "YYYY/MM/DD"
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldFkMRQMz",
+    "field": {
+      "id": "fldFkMRQMz",
+      "type": 13,
+      "name": "电话号码",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldfW6yZsr",
+    "field": {
+      "id": "fldfW6yZsr",
+      "type": 21,
+      "name": "双向关联",
+      "property": {
+        "tableId": "tbl8ZrlK3haHTHeM",
+        "multiple": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "separator": ","
+    },
+    "root": true,
+    "hasChildren": true,
+    "children": [
+      {
+        "key": "fldBOaQww7",
+        "field": {
+          "id": "fldBOaQww7",
+          "type": 1,
+          "name": "文本 14",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldGrAiL6c",
+        "field": {
+          "id": "fldGrAiL6c",
+          "type": 1,
+          "name": "文本 20",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldIYOcYVy",
+        "field": {
+          "id": "fldIYOcYVy",
+          "type": 1,
+          "name": "id",
+          "property": null,
+          "isPrimary": true,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldO8ZFqUV",
+        "field": {
+          "id": "fldO8ZFqUV",
+          "type": 1,
+          "name": "文本 26",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldR0lhqn8",
+        "field": {
+          "id": "fldR0lhqn8",
+          "type": 1,
+          "name": "文本 16",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld6PhwMwZ",
+        "field": {
+          "id": "fld6PhwMwZ",
+          "type": 1,
+          "name": "文本 23",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldF7SdsY5",
+        "field": {
+          "id": "fldF7SdsY5",
+          "type": 2,
+          "name": "age",
+          "property": {
+            "formatter": "0"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "age",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldUfqxJ8P",
+        "field": {
+          "id": "fldUfqxJ8P",
+          "type": 1,
+          "name": "文本 7",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld7ArzIDs",
+        "field": {
+          "id": "fld7ArzIDs",
+          "type": 1,
+          "name": "文本 19",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldmG6CVj5",
+        "field": {
+          "id": "fldmG6CVj5",
+          "type": 1,
+          "name": "文本 29",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldW5vD5i4",
+        "field": {
+          "id": "fldW5vD5i4",
+          "type": 1,
+          "name": "文本 27",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldLC3D6YH",
+        "field": {
+          "id": "fldLC3D6YH",
+          "type": 1,
+          "name": "文本 9",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldE5eKcVT",
+        "field": {
+          "id": "fldE5eKcVT",
+          "type": 5,
+          "name": "day",
+          "property": {
+            "dateFormat": "yyyy-MM-dd HH:mm",
+            "displayTimeZone": true,
+            "autoFill": false
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {
+          "format": "YYYY/MM/DD"
+        },
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldLSMaHhj",
+        "field": {
+          "id": "fldLSMaHhj",
+          "type": 1,
+          "name": "文本 25",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld7mh2ACa",
+        "field": {
+          "id": "fld7mh2ACa",
+          "type": 1,
+          "name": "email",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "email",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldDIRC088",
+        "field": {
+          "id": "fldDIRC088",
+          "type": 1,
+          "name": "文本 18",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldrxwSD3x",
+        "field": {
+          "id": "fldrxwSD3x",
+          "type": 1,
+          "name": "name",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "name",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldqgAjxWT",
+        "field": {
+          "id": "fldqgAjxWT",
+          "type": 1,
+          "name": "文本 8",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldBOWVf4q",
+        "field": {
+          "id": "fldBOWVf4q",
+          "type": 1,
+          "name": "文本 22",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldDG2q5II",
+        "field": {
+          "id": "fldDG2q5II",
+          "type": 1,
+          "name": "文本 28",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldKEosg0Z",
+        "field": {
+          "id": "fldKEosg0Z",
+          "type": 1,
+          "name": "文本 11",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldgZIltnZ",
+        "field": {
+          "id": "fldgZIltnZ",
+          "type": 15,
+          "name": "url",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldYYTiMEB",
+        "field": {
+          "id": "fldYYTiMEB",
+          "type": 1,
+          "name": "文本 21",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "flduEYDHla",
+        "field": {
+          "id": "flduEYDHla",
+          "type": 2,
+          "name": "score",
+          "property": {
+            "formatter": "0.0"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "score",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldC7czhgt",
+        "field": {
+          "id": "fldC7czhgt",
+          "type": 1005,
+          "name": "autoNumber",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": false
+      },
+      {
+        "key": "fldcP9Om5X",
+        "field": {
+          "id": "fldcP9Om5X",
+          "type": 1,
+          "name": "文本 15",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld3j9ujx5",
+        "field": {
+          "id": "fld3j9ujx5",
+          "type": 1,
+          "name": "address",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "address",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldttPthuk",
+        "field": {
+          "id": "fldttPthuk",
+          "type": 22,
+          "name": "location",
+          "property": {
+            "inputType": "NOT_LIMIT"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldmzho2yR",
+        "field": {
+          "id": "fldmzho2yR",
+          "type": 1,
+          "name": "文本 17",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldjeEWfBS",
+        "field": {
+          "id": "fldjeEWfBS",
+          "type": 1,
+          "name": "文本 13",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldv8jL7XV",
+        "field": {
+          "id": "fldv8jL7XV",
+          "type": 5,
+          "name": "birthday",
+          "property": {
+            "dateFormat": "yyyy/MM/dd",
+            "displayTimeZone": false,
+            "autoFill": false
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "birthday",
+        "config": {
+          "format": "YYYY/MM/DD"
+        },
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldJ7LQgGF",
+        "field": {
+          "id": "fldJ7LQgGF",
+          "type": 13,
+          "name": "phone",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "phone",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldyLt4xmW",
+        "field": {
+          "id": "fldyLt4xmW",
+          "type": 1,
+          "name": "文本 24",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldQ2bwMZt",
+        "field": {
+          "id": "fldQ2bwMZt",
+          "type": 1,
+          "name": "文本 12",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldWUX7sJW",
+        "field": {
+          "id": "fldWUX7sJW",
+          "type": 1,
+          "name": "文本 10",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldwQ94NRv",
+        "field": {
+          "id": "fldwQ94NRv",
+          "type": 20,
+          "name": "公式",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": false
+      }
+    ],
+    "writable": true,
+    "linkConfig": {
+      "allowAdd": false,
+      "primaryKey": "fldIYOcYVy"
+    }
+  },
+  {
+    "key": "fldJon8klZ",
+    "field": {
+      "id": "fldJon8klZ",
+      "type": 5,
+      "name": "日期",
+      "property": {
+        "dateFormat": "yyyy/MM/dd",
+        "displayTimeZone": false,
+        "autoFill": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "format": "YYYY/MM/DD"
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldSHRqnpH",
+    "field": {
+      "id": "fldSHRqnpH",
+      "type": 1,
+      "name": "文本",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fld6sziIyW",
+    "field": {
+      "id": "fld6sziIyW",
+      "type": 1002,
+      "name": "最后更新时间",
+      "property": {
+        "dateFormat": "yyyy/MM/dd",
+        "displayTimeZone": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "format": "YYYY/MM/DD"
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fldAr3hnDq",
+    "field": {
+      "id": "fldAr3hnDq",
+      "type": 20,
+      "name": "公式",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fld0TS9Aop",
+    "field": {
+      "id": "fld0TS9Aop",
+      "type": 1004,
+      "name": "修改人",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fldoU5B9dr",
+    "field": {
+      "id": "fldoU5B9dr",
+      "type": 3,
+      "name": "单选",
+      "property": {
+        "options": [
+          {
+            "id": "optmGO4SEu",
+            "color": 0,
+            "name": "a"
+          },
+          {
+            "id": "optHOUAkQ6",
+            "color": 1,
+            "name": "b"
+          },
+          {
+            "name": "c",
+            "id": "opt8zn18ez",
+            "color": 2
+          },
+          {
+            "id": "optEN2GmzZ",
+            "color": 3,
+            "name": "d"
+          },
+          {
+            "color": 4,
+            "name": "z",
+            "id": "optoxiUQep"
+          }
+        ],
+        "optionsType": 0
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldwmHWM6v",
+    "field": {
+      "id": "fldwmHWM6v",
+      "type": 1,
+      "name": "索引",
+      "property": null,
+      "isPrimary": true,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "excel_field": "索引",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldvyneGxW",
+    "field": {
+      "id": "fldvyneGxW",
+      "type": 15,
+      "name": "超链接",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldSCvzgxh",
+    "field": {
+      "id": "fldSCvzgxh",
+      "type": 99002,
+      "name": "进度",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldvxQ4Txw",
+    "field": {
+      "id": "fldvxQ4Txw",
+      "type": 22,
+      "name": "地理位置",
+      "property": {
+        "inputType": "NOT_LIMIT"
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fld6LtA72N",
+    "field": {
+      "id": "fld6LtA72N",
+      "type": 7,
+      "name": "复选框",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "boolValue": {
+        "true": ["是", "True", "true", "TRUE", "1", "☑️"],
+        "false": ["否", "False", "false", "FALSE", "0", ""]
+      }
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldCnhFF9t",
+    "field": {
+      "id": "fldCnhFF9t",
+      "type": 11,
+      "name": "人员",
+      "property": {
+        "multiple": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldAGY0fcL",
+    "field": {
+      "id": "fldAGY0fcL",
+      "type": 1003,
+      "name": "创建人",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fld0EuAUFr",
+    "field": {
+      "id": "fld0EuAUFr",
+      "type": 5,
+      "name": "文本 4",
+      "property": {
+        "dateFormat": "yyyy/MM/dd",
+        "displayTimeZone": false,
+        "autoFill": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "format": "YYYY/MM/DD"
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldu0xetcn",
+    "field": {
+      "id": "fldu0xetcn",
+      "type": 2,
+      "name": "数字",
+      "property": {
+        "formatter": "0.0"
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldV7kQC4W",
+    "field": {
+      "id": "fldV7kQC4W",
+      "type": 23,
+      "name": "群组",
+      "property": {
+        "multiple": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fldaE40fkw",
+    "field": {
+      "id": "fldaE40fkw",
+      "type": 18,
+      "name": "单向关联",
+      "property": {
+        "tableId": "tbl8ZrlK3haHTHeM",
+        "multiple": true
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {
+      "separator": ","
+    },
+    "root": true,
+    "hasChildren": true,
+    "children": [
+      {
+        "key": "fldBOaQww7",
+        "field": {
+          "id": "fldBOaQww7",
+          "type": 1,
+          "name": "文本 14",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldGrAiL6c",
+        "field": {
+          "id": "fldGrAiL6c",
+          "type": 1,
+          "name": "文本 20",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldIYOcYVy",
+        "field": {
+          "id": "fldIYOcYVy",
+          "type": 1,
+          "name": "id",
+          "property": null,
+          "isPrimary": true,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldO8ZFqUV",
+        "field": {
+          "id": "fldO8ZFqUV",
+          "type": 1,
+          "name": "文本 26",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldR0lhqn8",
+        "field": {
+          "id": "fldR0lhqn8",
+          "type": 1,
+          "name": "文本 16",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld6PhwMwZ",
+        "field": {
+          "id": "fld6PhwMwZ",
+          "type": 1,
+          "name": "文本 23",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldF7SdsY5",
+        "field": {
+          "id": "fldF7SdsY5",
+          "type": 2,
+          "name": "age",
+          "property": {
+            "formatter": "0"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "age",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldUfqxJ8P",
+        "field": {
+          "id": "fldUfqxJ8P",
+          "type": 1,
+          "name": "文本 7",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld7ArzIDs",
+        "field": {
+          "id": "fld7ArzIDs",
+          "type": 1,
+          "name": "文本 19",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldmG6CVj5",
+        "field": {
+          "id": "fldmG6CVj5",
+          "type": 1,
+          "name": "文本 29",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldW5vD5i4",
+        "field": {
+          "id": "fldW5vD5i4",
+          "type": 1,
+          "name": "文本 27",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldLC3D6YH",
+        "field": {
+          "id": "fldLC3D6YH",
+          "type": 1,
+          "name": "文本 9",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldE5eKcVT",
+        "field": {
+          "id": "fldE5eKcVT",
+          "type": 5,
+          "name": "day",
+          "property": {
+            "dateFormat": "yyyy-MM-dd HH:mm",
+            "displayTimeZone": true,
+            "autoFill": false
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {
+          "format": "YYYY/MM/DD"
+        },
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldLSMaHhj",
+        "field": {
+          "id": "fldLSMaHhj",
+          "type": 1,
+          "name": "文本 25",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld7mh2ACa",
+        "field": {
+          "id": "fld7mh2ACa",
+          "type": 1,
+          "name": "email",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "email",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldDIRC088",
+        "field": {
+          "id": "fldDIRC088",
+          "type": 1,
+          "name": "文本 18",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldrxwSD3x",
+        "field": {
+          "id": "fldrxwSD3x",
+          "type": 1,
+          "name": "name",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "name",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldqgAjxWT",
+        "field": {
+          "id": "fldqgAjxWT",
+          "type": 1,
+          "name": "文本 8",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldBOWVf4q",
+        "field": {
+          "id": "fldBOWVf4q",
+          "type": 1,
+          "name": "文本 22",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldDG2q5II",
+        "field": {
+          "id": "fldDG2q5II",
+          "type": 1,
+          "name": "文本 28",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldKEosg0Z",
+        "field": {
+          "id": "fldKEosg0Z",
+          "type": 1,
+          "name": "文本 11",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldgZIltnZ",
+        "field": {
+          "id": "fldgZIltnZ",
+          "type": 15,
+          "name": "url",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldYYTiMEB",
+        "field": {
+          "id": "fldYYTiMEB",
+          "type": 1,
+          "name": "文本 21",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "flduEYDHla",
+        "field": {
+          "id": "flduEYDHla",
+          "type": 2,
+          "name": "score",
+          "property": {
+            "formatter": "0.0"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "score",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldC7czhgt",
+        "field": {
+          "id": "fldC7czhgt",
+          "type": 1005,
+          "name": "autoNumber",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": false
+      },
+      {
+        "key": "fldcP9Om5X",
+        "field": {
+          "id": "fldcP9Om5X",
+          "type": 1,
+          "name": "文本 15",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fld3j9ujx5",
+        "field": {
+          "id": "fld3j9ujx5",
+          "type": 1,
+          "name": "address",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "address",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldttPthuk",
+        "field": {
+          "id": "fldttPthuk",
+          "type": 22,
+          "name": "location",
+          "property": {
+            "inputType": "NOT_LIMIT"
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldmzho2yR",
+        "field": {
+          "id": "fldmzho2yR",
+          "type": 1,
+          "name": "文本 17",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldjeEWfBS",
+        "field": {
+          "id": "fldjeEWfBS",
+          "type": 1,
+          "name": "文本 13",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldv8jL7XV",
+        "field": {
+          "id": "fldv8jL7XV",
+          "type": 5,
+          "name": "birthday",
+          "property": {
+            "dateFormat": "yyyy/MM/dd",
+            "displayTimeZone": false,
+            "autoFill": false
+          },
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "birthday",
+        "config": {
+          "format": "YYYY/MM/DD"
+        },
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldJ7LQgGF",
+        "field": {
+          "id": "fldJ7LQgGF",
+          "type": 13,
+          "name": "phone",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "excel_field": "phone",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldyLt4xmW",
+        "field": {
+          "id": "fldyLt4xmW",
+          "type": 1,
+          "name": "文本 24",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldQ2bwMZt",
+        "field": {
+          "id": "fldQ2bwMZt",
+          "type": 1,
+          "name": "文本 12",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldWUX7sJW",
+        "field": {
+          "id": "fldWUX7sJW",
+          "type": 1,
+          "name": "文本 10",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": true
+      },
+      {
+        "key": "fldwQ94NRv",
+        "field": {
+          "id": "fldwQ94NRv",
+          "type": 20,
+          "name": "公式",
+          "property": null,
+          "isPrimary": false,
+          "description": {
+            "disableSyncToFormDesc": false,
+            "content": null
+          }
+        },
+        "table": "tbl8ZrlK3haHTHeM",
+        "config": {},
+        "root": true,
+        "hasChildren": false,
+        "children": [],
+        "writable": false
+      }
+    ],
+    "writable": true,
+    "linkConfig": {
+      "allowAdd": false,
+      "primaryKey": "fldIYOcYVy"
+    }
+  },
+  {
+    "key": "fldgkrkVub",
+    "field": {
+      "id": "fldgkrkVub",
+      "type": 1005,
+      "name": "自动编号",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": false
+  },
+  {
+    "key": "fldWTTq6t8",
+    "field": {
+      "id": "fldWTTq6t8",
+      "type": 17,
+      "name": "附件",
+      "property": {
+        "onlyMobile": false
+      },
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "excel_field": "附件",
+    "config": {
+      "separator": ",",
+      "requestConfig": {
+        "method": "GET",
+        "headers": [],
+        "body": ""
+      }
+    },
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  },
+  {
+    "key": "fldvYRP28L",
+    "field": {
+      "id": "fldvYRP28L",
+      "type": 0,
+      "name": "流程",
+      "property": null,
+      "isPrimary": false,
+      "description": {
+        "disableSyncToFormDesc": false,
+        "content": null
+      }
+    },
+    "table": "tblxarg8wkDhmjW1",
+    "config": {},
+    "root": true,
+    "hasChildren": false,
+    "children": [],
+    "writable": true
+  }
+]

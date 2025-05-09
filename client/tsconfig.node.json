@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["vite.config.ts", "scripts/**/*.ts", "plugins/*.ts"]
+}

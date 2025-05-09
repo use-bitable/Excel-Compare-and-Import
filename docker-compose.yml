@@ -1,10 +1,16 @@
 services:
   server:
-    env_file: ".env.stable"
-    build: .
+    env_file: ".env"
+    build: ./server
     ports:
       - "5000:5000"
     depends_on:
       - redis
   redis:
     image: redis
+  client:
+    build: ./client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
