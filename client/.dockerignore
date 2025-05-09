@@ -1,0 +1,13 @@
+node_modules
+dist
+.config
+coverage
+public/test/
+components.d.ts
+auto-imports.d.ts
+stats.html
+scripts
+.gitignore
+.prettierignore
+.prettierrc
+tests

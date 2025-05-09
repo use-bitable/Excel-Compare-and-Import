@@ -1,3 +1,0 @@
-SUPPORTED_TYPES = {".csv"}
-DEFAULT_ENCODING = "utf-8-sig"
-DEFAULT_READ_MODE = "r"

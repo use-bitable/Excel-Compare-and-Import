@@ -1,0 +1,9 @@
+scripts
+.pytest_cache
+__pycache__
+.gitignore
+pytest.ini
+.env.alpha
+.env.beta
+.env.dev
+tests

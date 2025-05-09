@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`cellValueToString test > IOpenCheckbox 1`] = `"☑️"`;
+
+exports[`cellValueToString test > IOpenLocation 1`] = `"深圳湾创新科技中心，广东深圳南山科苑地铁站C出口"`;
+
+exports[`cellValueToString test > IOpenMultiSelect 1`] = `"option_text,option_text"`;
+
+exports[`cellValueToString test > IOpenSegment[] 1`] = `"Hello worldhttps://feishu.cn@李健未命名多维表格"`;
+
+exports[`cellValueToString test > IOpenSingleSelect 1`] = `"option_text"`;
+
+exports[`cellValueToString test > IOpenUser[] 1`] = `"ou_xxx"`;
+
+exports[`cellValueToString test > number 1`] = `"1"`;
+
+exports[`cellValueToString test > string 1`] = `undefined`;

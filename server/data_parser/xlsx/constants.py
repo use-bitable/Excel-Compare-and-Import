@@ -1,7 +1,0 @@
-SUPPORTED_TYPES = {".xlsx", ".xlsm", ".xltx", ".xltm"}
-DEFAULT_SHEET_NAME = None
-DEFAULT_HEADER = 1
-DEFAULT_PAGE_SIZE = None
-DEFAULT_PAGE_TOKEN = 0
-DEFAULT_DATA_RANGE = (None, None, None, None)
-DEFAULT_PERFORMANCE_MODE = False

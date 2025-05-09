@@ -1,0 +1,5 @@
+export const ADD_RECORDS_LIMIT = 200
+export const DELETE_RECORDS_LIMIT = 200
+export const UPDATE_RECORDS_LIMIT = 200
+export const GET_RECORDS_LIMIT = 200
+export const GET_RECORDS_ID_LIMIT = 200
