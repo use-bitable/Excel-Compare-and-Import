@@ -1,6 +1,6 @@
-from server.token import TokenMeta, TokenManager, decrypt_token, tokenclass
 from orjson import dumps, OPT_SORT_KEYS
-from server.tests.utils import DEFAULT_SECURITY_KEY
+from app.token import TokenMeta, TokenManager, decrypt_token, tokenclass
+from app.tests.utils import DEFAULT_SECURITY_KEY
 
 
 @tokenclass

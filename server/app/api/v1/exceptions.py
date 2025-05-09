@@ -1,5 +1,5 @@
-from server.schemes import ResponseStatusCode
-from server.api.exceptions import NormalApiException
+from app.schemes import ResponseStatusCode
+from app.api.exceptions import NormalApiException
 
 
 class ApiFileExceedLimitException(NormalApiException):

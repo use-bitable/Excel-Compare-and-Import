@@ -1,4 +1,4 @@
-from server.types import FieldType
+from app.types import FieldType
 from .core import BasicCellParserPlugin
 from .types import CheckboxCellValue, CheckboxWriteValue, CheckboxParsedValue
 

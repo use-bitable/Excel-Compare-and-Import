@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
-from server.base import IBase
-from server.api.utils import make_response
-from server.user import get_user_token_manager, UserTokenMeta
-from server.schemes import (
+from app.base import IBase
+from app.api.utils import make_response
+from app.user import get_user_token_manager, UserTokenMeta
+from app.schemes import (
     BasicResponseModel,
     UserTokenResponseDataModel,
 )

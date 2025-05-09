@@ -6,7 +6,7 @@
 @Description: APP INITIALIZATION
 """
 from fastapi import FastAPI
-from server.api import api_v1, API_V1_PREFIX
+from app.api import api_v1, API_V1_PREFIX
 
 app = FastAPI()
 app.mount(API_V1_PREFIX, api_v1)

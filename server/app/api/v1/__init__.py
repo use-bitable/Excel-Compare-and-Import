@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
-from server.schemes import BasicResponseModel
+from app.schemes import BasicResponseModel
 from ._constants import *
 from .routers import file, auth, data
 from ..exceptions import NormalApiException

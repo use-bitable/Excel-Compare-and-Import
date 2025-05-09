@@ -12,8 +12,8 @@ from baseopensdk.api.drive.v1.model.upload_all_media_request_body import (
     UploadAllMediaRequestBody,
 )
 from baseopensdk.api.base.v1.model.app_table import AppTable
-from server.utils import paginate
-from server.events import (
+from app.utils import paginate
+from app.events import (
     EventsManager,
 )
 from .table import IBaseTable

@@ -1,5 +1,5 @@
-from server.api.types import APIMeta
-from server.api.utils import get_meta
+from app.api.types import APIMeta
+from app.api.utils import get_meta
 
 API_V1_LIST: dict[str, APIMeta] = {
     "file": get_meta("v1", "file"),

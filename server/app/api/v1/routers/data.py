@@ -1,8 +1,8 @@
 from typing import Annotated, Union
 from fastapi import APIRouter, status, Depends, Body
-from server.file import fileManager
-from server.api.utils import make_response
-from server.schemes import (
+from app.file import fileManager
+from app.api.utils import make_response
+from app.schemes import (
     DataPreviewRequestBodyModel,
     User,
     BasicResponseModel,
@@ -16,7 +16,7 @@ from server.schemes import (
     XLSDataPreviewResponseDataModel,
     CSVDataPreviewResponseDataModel,
 )
-from server.data_parser import (
+from app.data_parser import (
     dataParser,
 )
 from .._constants import API_V1_LIST

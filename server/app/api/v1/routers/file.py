@@ -1,16 +1,16 @@
 from typing import Annotated
 from fastapi import APIRouter, File, UploadFile, status, Depends, Form, Body, Query
-from server.schemes import (
+from app.schemes import (
     BasicResponseModel,
     UploadResponseDataModel,
     ResponseStatusCode,
     User,
     StartUploadFileChunkRequestBodyModel,
 )
-from server.api.types import APIResourceItem
+from app.api.types import APIResourceItem
 
-from server.api.utils import make_response
-from server.file import (
+from app.api.utils import make_response
+from app.file import (
     fileManager,
     CaculateMD5Exception,
     NoFileException,
