@@ -1,6 +1,6 @@
 # Excel Compare and Import
 
-[![Deploy](https://github.com/zjut-bio-party-undergraduate-branch/Excel-Compare-and-Import/actions/workflows/deploy.yml/badge.svg)](https://github.com/zjut-bio-party-undergraduate-branch/Excel-Compare-and-Import/actions/workflows/deploy.yml) [![CI](https://github.com/zjut-bio-party-undergraduate-branch/Excel-Compare-and-Import/actions/workflows/ci.yml/badge.svg)](https://github.com/zjut-bio-party-undergraduate-branch/Excel-Compare-and-Import/actions/workflows/ci.yml)
+[![Backend CI](https://github.com/use-bitable/Excel-Compare-and-Import/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/use-bitable/Excel-Compare-and-Import/actions/workflows/backend-ci.yml) [![Frontend CI](https://github.com/use-bitable/Excel-Compare-and-Import/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/use-bitable/Excel-Compare-and-Import/actions/workflows/frontend-ci.yml)
 
 ## Abstract
 
