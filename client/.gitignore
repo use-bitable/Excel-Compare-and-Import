@@ -1,0 +1,26 @@
+node_modules
+dist
+test/data/
+.config
+coverage
+public/test/
+components.d.ts
+auto-imports.d.ts
+stats.html
+file_cache
+# IDEs and editors
+
+*.iml
+*.ipr
+*.iws
+.idea/
+.project
+.classpath
+.settings/
+.vscode/
+*.sublime-workspace
+
+# OS
+
+.DS_Store
+Thumbs.db
