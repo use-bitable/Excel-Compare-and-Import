@@ -1,5 +1,5 @@
 # Build the frontend
-FROM node:22-slim AS builder
+FROM node:24-slim AS builder
 
 WORKDIR /app
 
