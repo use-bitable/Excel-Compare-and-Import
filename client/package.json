@@ -68,7 +68,7 @@
     "msw": "^2.0.11",
     "npm-run-all2": "^8.0.0",
     "prettier": "^3.0.3",
-    "rollup-plugin-visualizer": "^6.0.0",
+    "rollup-plugin-visualizer": "^7.0.0",
     "typescript": "^5.5.4",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^31.0.0",
