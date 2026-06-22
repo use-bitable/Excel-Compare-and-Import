@@ -53,7 +53,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.0.0",
     "@commitlint/config-conventional": "^21.0.0",
-    "@hey-api/openapi-ts": "^0.98.0",
+    "@hey-api/openapi-ts": "^0.99.0",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^24.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
