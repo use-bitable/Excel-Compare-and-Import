@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.authors="qww"
 
 WORKDIR /app
 
-COPY --from=ghcr.io/astral-sh/uv:0.11.32 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.12.1 /uv /uvx /bin/
 
 ENV PATH="/app/.venv/bin:$PATH"
 
